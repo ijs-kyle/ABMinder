@@ -4,69 +4,198 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/simpleInterestCardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="8dp"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="10dp"
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
-        android:layout_margin="16dp"
         android:layout_gravity="center"
+        android:orientation="vertical"
         tools:context=".calculator.options.SimpleInterestFragment" >
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:padding="16dp"
                 android:orientation="vertical">
 
-                <EditText
-                        android:id="@+id/editTextPrincipal"
+                <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/principal_amount"
-                        android:inputType="numberDecimal"
-                        android:layout_marginTop="16dp"
-                        android:importantForAutofill="no"
-                        android:minHeight="48dp"
-                        android:textColorHint="#757575"
-                        tools:ignore="VisualLintTextFieldSize" />
+                        android:text="simple interest"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="6dp"
+                        android:gravity="center"
+                        android:background="@drawable/search_view_bg"
+                        android:textStyle="bold"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textAllCaps="true"/>
 
-                <EditText
-                        android:id="@+id/editTextRate"
+                <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/rate_of_interest"
-                        android:inputType="numberDecimal"
-                        android:layout_marginTop="8dp"
-                        android:importantForAutofill="no"
-                        android:minHeight="48dp"
-                        android:textColorHint="#757575"
-                        tools:ignore="VisualLintTextFieldSize" />
+                        android:layout_marginTop="10dp"
+                        android:padding="8dp"
+                        android:background="@drawable/rounded_bg"
+                        android:orientation="vertical">
 
-                <EditText
-                        android:id="@+id/editTextTime"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/time_years"
-                        android:inputType="numberDecimal"
-                        android:layout_marginTop="8dp"
-                        android:importantForAutofill="no"
-                        android:minHeight="48dp"
-                        tools:ignore="VisualLintTextFieldSize" />
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editTextPrincipal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/principal_amount"
+                                android:inputType="numberDecimal"
+                                android:importantForAutofill="no"
+                                android:paddingStart="6dp"
+                                android:minHeight="48dp"
+                                android:textColorHint="#757575"
+                                tools:ignore="VisualLintTextFieldSize" />
 
-                <TextView android:id="@+id/textViewResult"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="18sp"
-                        android:layout_marginTop="16dp" />
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editTextRate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/rate_of_interest"
+                                android:inputType="numberDecimal"
+                                android:layout_marginTop="8dp"
+                                android:importantForAutofill="no"
+                                android:paddingStart="6dp"
+                                android:minHeight="48dp"
+                                android:textColorHint="#757575"
+                                tools:ignore="VisualLintTextFieldSize" />
 
-                <Button android:id="@+id/buttonCalculate"
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editTextTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/time_years"
+                                android:inputType="numberDecimal"
+                                android:paddingStart="6dp"
+                                android:layout_marginTop="8dp"
+                                android:importantForAutofill="no"
+                                android:minHeight="48dp"
+                                tools:ignore="VisualLintTextFieldSize" />
+                </LinearLayout>
+
+                <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/calculate"
-                        android:layout_marginTop="16dp"
-                        tools:ignore="VisualLintButtonSize" />
+                        android:layout_marginTop="2dp"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/textViewResult"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/rounded_bg"
+                                android:padding="8dp"
+                                android:layout_marginEnd="6dp"
+                                android:layout_weight="1"
+                                android:text=""
+                                android:hint="Result"
+                                android:gravity="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+                        <Button
+                                android:id="@+id/buttonCalculate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/calculate"
+                                android:layout_weight="2"/>
+                </LinearLayout>
+
+                <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                        android:id="@+id/titleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Simple Interest Calculator"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                <TextView
+                                        android:id="@+id/descriptionTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="The Simple Interest Calculator is a convenient tool tailored to swiftly compute the interest accrued or paid on a principal amount over a specified time frame. This user-friendly calculator streamlines the process for quick and accurate results."
+                                        android:textSize="16sp"
+                                        android:layout_marginTop="6dp"/>
+
+                                <!-- Add more TextViews for key features -->
+
+                                <TextView
+                                        android:id="@+id/keyFeaturesTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Key Features:"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold"
+                                        android:layout_marginTop="16dp"
+                                        />
+
+                                <TextView
+                                        android:id="@+id/resultTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Result:"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold"
+                                        android:layout_marginTop="16dp" />
+
+                                <TextView
+                                        android:id="@+id/resultDescriptionTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Simple Interest: Obtain the calculated simple interest based on the entered values."
+                                        android:textSize="16sp"
+                                        android:layout_marginTop="6dp"/>
+
+                                <TextView
+                                        android:id="@+id/howToUseTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="How to Use:"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        android:layout_marginTop="16dp" />
+
+                                <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="1. Enter the principal amount."
+                                        android:textSize="16sp"
+                                        android:layout_marginTop="6dp"/>
+
+                                <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="2. Input the annual interest rate."
+                                        android:textSize="16sp"
+                                        android:layout_marginTop="6dp"/>
+
+                                <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="3. Specify the time period in years."
+                                        android:textSize="16sp"
+                                        android:layout_marginTop="6dp"/>
+
+                                <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="4. Instantly view the calculated simple interest."
+                                        android:textSize="16sp"
+                                        android:layout_marginTop="6dp"/>
+                        </LinearLayout>
+                </ScrollView>
         </LinearLayout>
-
-
-
 </androidx.cardview.widget.CardView>

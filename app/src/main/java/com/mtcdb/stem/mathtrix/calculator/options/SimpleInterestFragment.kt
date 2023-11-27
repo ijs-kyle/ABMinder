@@ -25,14 +25,12 @@ class SimpleInterestFragment : Fragment() {
     ): View {
         val rootView = inflater.inflate(R.layout.fragment_simple_interest, container, false)
 
-        // Initialize UI elements
         principalEditText = rootView.findViewById(R.id.editTextPrincipal)
         rateEditText = rootView.findViewById(R.id.editTextRate)
         timeEditText = rootView.findViewById(R.id.editTextTime)
         calculateButton = rootView.findViewById(R.id.buttonCalculate)
         resultTextView = rootView.findViewById(R.id.textViewResult)
 
-        // Handle calculate button click
         calculateButton.setOnClickListener {
             calculateSimpleInterest()
         }

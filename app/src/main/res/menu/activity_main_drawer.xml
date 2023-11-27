@@ -3,6 +3,6 @@
     <item
             android:id="@+id/nav_item_calculator"
             android:title="@string/calculator"
-            android:icon="@drawable/icons8_calculator_64"/>
+            android:icon="@drawable/calculator"/>
 
 </menu>

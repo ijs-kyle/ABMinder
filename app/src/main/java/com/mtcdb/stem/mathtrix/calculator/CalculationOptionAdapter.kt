@@ -28,7 +28,6 @@ class CalculationOptionAdapter(
         holder.textViewName.text = option.name
         holder.textViewDescription.text = option.description
 
-        // Handle item click
         holder.itemView.setOnClickListener {
             onItemClick(option)
         }

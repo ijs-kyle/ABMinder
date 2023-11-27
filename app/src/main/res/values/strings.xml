@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">MathTrix</string>
     <string name="search_terms_here">Search terms here...</string>
-    <string name="definitions">Definitions:</string>
-    <string name="examples">Examples:</string>
+    <string name="definitions">Definition:</string>
+    <string name="examples">Example:</string>
     <string name="navigation_drawer_open">Open Menu</string>
     <string name="navigation_drawer_close">Close Menu</string>
     <string name="calculator">Calculator</string>
@@ -16,4 +16,5 @@
     <string name="simple_interest_result">Result</string>
     <string name="search">Search</string>
     <string name="business_calculator">Business Calculator</string>
+    <string name="simple_interest">Simple Interest:</string>
 </resources>

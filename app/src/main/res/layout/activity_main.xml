@@ -15,51 +15,59 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                app:title="@string/app_name"
-                android:layout_weight="1"
+        <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="6dp"
-                app:titleTextAppearance="@style/TextAppearance.Material3.TitleLarge" >
+                android:layout_height="100dp"
+                android:paddingBottom="6dp">
 
-            <SearchView
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    app:title="@string/app_name"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:elevation="6dp"
+                    app:titleTextAppearance="@style/TextAppearance.Material3.TitleLarge" />
+            <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:paddingEnd="10dp"
-                    android:background="@drawable/rounded_bg" />
-        </androidx.appcompat.widget.Toolbar>
+                    android:background="@drawable/search_view_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingHorizontal="6dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:inputType="text"
+                    app:iconifiedByDefault="false" />
+        </com.google.android.material.appbar.AppBarLayout>
 
         <LinearLayout
                 android:id="@+id/bottom_sheet"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="400dp"
                 android:orientation="vertical"
+                app:behavior_hideable="false"
                 app:behavior_peekHeight="65dp"
                 app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
             <include layout="@layout/dic_bottom_sheet" />
-
         </LinearLayout>
 
         <FrameLayout
                 android:id="@+id/fragment_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="60dp" />
+                android:layout_marginTop="99dp"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <!-- The navigation drawer -->
     <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
             android:layout_width="280dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="false"
+            app:itemIconTint="@color/black"
+            app:itemTextColor="@color/black"
+            android:background="@color/white"
+            app:itemTextAppearance="@style/TextAppearance.AppCompat.Medium"
             app:headerLayout="@layout/nav_header"
             app:menu="@menu/activity_main_drawer" />
-
 </com.mindinventory.midrawer.MIDrawerView>

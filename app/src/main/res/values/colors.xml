@@ -4,8 +4,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="bg">#4169E1</color>
-    <color name="colorPrimary">#4169E1</color>
-    <color name="colorPrimaryDark">#2196F3</color>
+    <color name="colorPrimary">#07879E</color>
+    <color name="colorPrimaryDark">#07879E</color>
     <color name="colorAccent">#62B8DF</color>
     <color name="bgWindow">#E7E6E6</color>
 
