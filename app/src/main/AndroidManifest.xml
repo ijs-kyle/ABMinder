@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools">
+<manifest
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <application
             android:allowBackup="true"
@@ -13,16 +14,21 @@
             android:theme="@style/AppTheme"
             tools:targetApi="31">
         <activity
+                android:name=".settings.SettingsActivity"
+                android:exported="false"
+                android:label="@string/title_activity_settings" />
+        <activity
                 android:name=".MainActivity"
                 android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".calculator.CalculatorOptionsActivity"
-            android:exported="true"/>
+        <activity
+                android:name=".calculator.CalculatorOptionsActivity"
+                android:exported="true" />
     </application>
 
 </manifest>
