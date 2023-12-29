@@ -1,16 +1,49 @@
 package com.mtcdb.stem.mathtrix.calculator
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mtcdb.stem.mathtrix.R
+import java.util.Locale
 
+@Suppress("UNCHECKED_CAST")
 class CalculationOptionAdapter(
-    private val calculationOptions: List<CalculationOption>,
+    private val originalOptions: List<CalculationOption>,
     private val onItemClick: (CalculationOption) -> Unit
-) : RecyclerView.Adapter<CalculationOptionAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<CalculationOptionAdapter.ViewHolder>(), Filterable {
+
+    private var filteredOptions: List<CalculationOption> = originalOptions
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val filterResults = FilterResults()
+                val query = constraint.toString().lowercase(Locale.getDefault())
+
+                val filteredList = if (query.isEmpty()) {
+                    originalOptions
+                } else {
+                    originalOptions.filter { option ->
+                        option.name.lowercase(Locale.getDefault()).contains(query)
+                    }
+                }
+
+                filterResults.values = filteredList
+                return filterResults
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                filteredOptions = results?.values as List<CalculationOption>
+                notifyDataSetChanged()
+            }
+        }
+    }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textViewName: TextView = itemView.findViewById(R.id.tVCalculationOption)
@@ -24,7 +57,7 @@ class CalculationOptionAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val option = calculationOptions[position]
+        val option = filteredOptions[position]
         holder.textViewName.text = option.name
         holder.textViewDescription.text = option.description
 
@@ -33,7 +66,6 @@ class CalculationOptionAdapter(
         }
     }
 
-    override fun getItemCount(): Int {
-        return calculationOptions.size
-    }
+    override fun getItemCount(): Int = filteredOptions.size
+
 }

@@ -1,8 +1,14 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/nav_item_dictionary"
+            android:title="@string/dictionary"
+            android:icon="@drawable/dictionary" />
 
     <item
             android:id="@+id/nav_item_calculator"
             android:title="@string/calculator"
-            android:icon="@drawable/calculator"/>
+            android:icon="@drawable/budget" />
 
 </menu>

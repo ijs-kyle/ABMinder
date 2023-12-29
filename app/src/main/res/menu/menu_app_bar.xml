@@ -4,8 +4,8 @@
 
     <item
             android:id="@+id/action_progress"
-            android:title="Progress"
-            app:showAsAction="always"
+            android:title="@string/progress"
+            app:showAsAction="ifRoom"
             android:icon="@drawable/progress_24" />
 
     <item

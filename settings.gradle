@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MathTrix"
 include ':app'
+include ':calculatorOptions'

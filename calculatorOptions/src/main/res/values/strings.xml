@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rate_of_interest">Rate of Interest(%)</string>
+    <string name="principal_amount">Principal Amount</string>
+    <string name="time_years">Time(years)</string>
+    <string name="calculate">Calculate</string>
+    <string name="show_explanation">Show Explanation</string>
+    <string name="simple_interest">simple interest</string>
+    <string name="selling_price">Selling Price</string>
+    <string name="cost_price">Cost Price</string>
+    <string name="profit_margin">Profit Margin</string>
+    <string name="calculate_amortization">Calculate</string>
+    <string name="amortization_schedule">Amortization Schedule</string>
+    <string name="loan_amount">Loan Amount</string>
+    <string name="interest_rate">Interest Rate</string>
+    <string name="loan_term_years">Loan Term (years)</string>
+</resources>
