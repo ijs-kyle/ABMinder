@@ -121,6 +121,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/enter"
+                            style="?android:attr/buttonBarButtonStyle"
                             />
                 </LinearLayout>
             </LinearLayout>
@@ -316,7 +317,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textViewNPVResult"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:layout_marginEnd="6dp"
@@ -325,13 +326,6 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         />
 
-                <Button
-                        android:id="@+id/buttonCalculate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/calculate"
-                        android:layout_weight="2"
-                        />
             </LinearLayout>
 
             <LinearLayout
@@ -341,12 +335,29 @@
                     >
 
 
-                <Button
-                        android:id="@+id/explainNPVButton"
+                <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/show_explanation"
-                        />
+                        android:orientation="horizontal">
+
+                    <Button
+                            android:id="@+id/explainNPVButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/show_explanation"
+                            style="?android:attr/buttonBarButtonStyle"
+                            android:layout_weight="1"
+                            />
+
+                    <Button
+                            android:id="@+id/buttonCalculate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/calculate"
+                            style="?android:attr/buttonBarButtonStyle"
+                            android:layout_weight="1"
+                            />
+                </LinearLayout>
 
 
                 <ScrollView

@@ -39,4 +39,5 @@
     <string name="variable_cost">Variable cost</string>
     <string name="fixed_cost">Fixed cost</string>
     <string name="break_even_calculator">Break-Even Point</string>
+    <string name="compound_interest">Compound Interest</string>
 </resources>

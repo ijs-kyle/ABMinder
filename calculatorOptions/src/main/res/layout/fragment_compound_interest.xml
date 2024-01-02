@@ -23,7 +23,7 @@
         <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Compound Interest"
+                android:text="@string/compound_interest"
                 android:fontFamily="sans-serif-black"
                 android:padding="6dp"
                 android:gravity="center"
@@ -125,7 +125,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/textViewResult"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
                     android:layout_marginEnd="6dp"
@@ -135,13 +135,6 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     />
 
-            <Button
-                    android:id="@+id/buttonCalculate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/calculate"
-                    android:layout_weight="2"
-                    />
         </LinearLayout>
 
         <LinearLayout
@@ -150,12 +143,29 @@
                 android:orientation="vertical"
                 >
 
-            <Button
-                    android:id="@+id/explainButton"
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/show_explanation"
-                    />
+                    android:orientation="horizontal">
+
+                <Button
+                        android:id="@+id/explainButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/show_explanation"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_weight="1"
+                        />
+
+                <Button
+                        android:id="@+id/buttonCalculate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/calculate"
+                        android:layout_weight="1"
+                        style="?android:attr/buttonBarButtonStyle"
+                        />
+            </LinearLayout>
 
             <ScrollView
                     android:layout_width="match_parent"
@@ -168,7 +178,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:padding="8dp"
-                        android:text=" "
+                        android:text=""
                         android:textSize="16sp"
                         />
             </ScrollView>
