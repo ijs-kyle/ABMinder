@@ -1,0 +1,113 @@
+package com.mtcdb.stem.mathtrix.calculator.options
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+
+class BreakEvenFragment : Fragment() {
+
+    private lateinit var fixedCostEditText: EditText
+    private lateinit var variableCostEditText: EditText
+    private lateinit var sellingPriceEditText: EditText
+    private lateinit var calculateButton: Button
+    private lateinit var resetButton: Button
+    private lateinit var resultTextView: TextView
+    private lateinit var explainButton: Button
+    private lateinit var descriptionTextView: TextView
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val rootView =
+            inflater.inflate(com.calculator.calculatoroptions.R.layout.fragment_break_even, container, false)
+
+        fixedCostEditText =
+            rootView.findViewById(com.calculator.calculatoroptions.R.id.editTextFixedCost)
+        variableCostEditText = rootView.findViewById(com.calculator.calculatoroptions.R.id.editTextVariableCost)
+        sellingPriceEditText = rootView.findViewById(com.calculator.calculatoroptions.R.id.editTextSellingPrice)
+        calculateButton =
+            rootView.findViewById(com.calculator.calculatoroptions.R.id.buttonCalculateBreakEven)
+        resetButton = rootView.findViewById(com.calculator.calculatoroptions.R.id.buttonResetBreakEven)
+        resultTextView =
+            rootView.findViewById(com.calculator.calculatoroptions.R.id.textViewBreakEvenOutput)
+        explainButton =
+            rootView.findViewById(com.calculator.calculatoroptions.R.id.explainBreakEvenButton)
+        descriptionTextView =
+            rootView.findViewById(com.calculator.calculatoroptions.R.id.tVBreakEvenDescription)
+
+        calculateButton.setOnClickListener {
+            calculateBreakEven()
+        }
+
+        resetButton.setOnClickListener {
+            resetInputs()
+        }
+
+        explainButton.setOnClickListener {
+            showExplanationDialog()
+        }
+
+        return rootView
+    }
+
+    private fun calculateBreakEven() {
+        val fixedCost = fixedCostEditText.text.toString().toDoubleOrNull() ?: 0.0
+        val variableCost = variableCostEditText.text.toString().toDoubleOrNull() ?: 0.0
+        val sellingPrice = sellingPriceEditText.text.toString().toDoubleOrNull() ?: 0.0
+
+        if (variableCost == 0.0) {
+            resultTextView.text = getString(com.mtcdb.stem.mathtrix.R.string.invalid_variable_cost)
+            return
+        }
+
+        val breakEvenQuantity = fixedCost / (sellingPrice - variableCost)
+        resultTextView.text = breakEvenQuantity.toString()
+    }
+
+    private fun resetInputs() {
+        fixedCostEditText.text.clear()
+        variableCostEditText.text.clear()
+        sellingPriceEditText.text.clear()
+        resultTextView.text = ""
+    }
+
+    private fun showExplanationDialog() {
+        val fixedCost = fixedCostEditText.text.toString().toDoubleOrNull() ?: 0.0
+        val variableCost = variableCostEditText.text.toString().toDoubleOrNull() ?: 0.0
+        val sellingPrice = sellingPriceEditText.text.toString().toDoubleOrNull() ?: 0.0
+
+        val breakEvenQuantity = fixedCost / (sellingPrice - variableCost)
+
+        val explanation = """
+        Break-Even Analysis helps determine the point at which total revenue equals total costs.
+                   
+        Given:
+            Fixed Cost = $fixedCost
+            Variable Cost = $variableCost
+            Selling Price = $sellingPrice
+            
+        Formula:
+            Break-Even Quantity = Fixed Cost / (Selling Price - Variable Cost)
+            
+        Solution:
+            Break-Even Quantity = $fixedCost / ($sellingPrice - $variableCost)
+            Break-Even Quantity = $breakEvenQuantity units
+            
+        Therefore, the Break-Even Quantity is $breakEvenQuantity units.
+    """.trimIndent()
+
+        // Display explanation in a custom dialog
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Break-Even Analysis")
+            .setMessage(explanation)
+            .setPositiveButton("OK", null)
+            .show()
+    }
+}

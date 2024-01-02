@@ -6,7 +6,7 @@
     <color name="bg">#4169E1</color>
     <color name="colorPrimary">#07879E</color>
     <color name="colorPrimaryDark">#07879E</color>
-    <color name="colorAccent">#62B8DF</color>
     <color name="bgWindow">#E7E6E6</color>
+    <color name="colorAccent">#41BACF</color>
 
 </resources>

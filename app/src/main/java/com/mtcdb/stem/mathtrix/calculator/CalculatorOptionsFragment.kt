@@ -11,9 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mtcdb.stem.mathtrix.R
 import com.mtcdb.stem.mathtrix.calculator.options.AmortizationFragment
+import com.mtcdb.stem.mathtrix.calculator.options.BreakEvenFragment
 import com.mtcdb.stem.mathtrix.calculator.options.CompoundInterestFragment
+import com.mtcdb.stem.mathtrix.calculator.options.NPVFragment
 import com.mtcdb.stem.mathtrix.calculator.options.PercentageChangeFragment
 import com.mtcdb.stem.mathtrix.calculator.options.ProfitMarginFragment
+import com.mtcdb.stem.mathtrix.calculator.options.ROIFragment
 import com.mtcdb.stem.mathtrix.calculator.options.SimpleInterestFragment
 
 class CalculatorOptionsFragment : Fragment() {
@@ -77,7 +80,7 @@ class CalculatorOptionsFragment : Fragment() {
                 "Measure the return on an investment as a percentage."
             ),
             CalculationOption(
-                "Break-Even Analysis",
+                "Break-Even Point",
                 "Find the point where revenue equals costs."
             ),
             CalculationOption(
@@ -231,6 +234,9 @@ class CalculatorOptionsFragment : Fragment() {
                 "Percentage Change" -> PercentageChangeFragment()
                 "Profit Margin" -> ProfitMarginFragment()
                 "Amortization Schedule" -> AmortizationFragment()
+                "Net Present Value (NPV)" -> NPVFragment()
+                "Return on Investment (ROI)" -> ROIFragment()
+                "Break-Even Point" -> BreakEvenFragment()
                 else -> null
             }
 
@@ -241,12 +247,11 @@ class CalculatorOptionsFragment : Fragment() {
                     .addToBackStack(null)
                     .commit()
                 searchView.clearFocus()
+                searchView.visibility = View.GONE
             }
         }
         recyclerView.adapter = adapter
 
         return rootView
     }
-
-
 }
