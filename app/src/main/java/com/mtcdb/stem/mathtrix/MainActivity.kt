@@ -78,7 +78,6 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                     drawerLayout.closeDrawer(GravityCompat.START)
                     toolbar.title = "Calculator"
-                    return@setNavigationItemSelectedListener true
                 }
 
                 R.id.nav_item_dictionary -> {
@@ -86,11 +85,11 @@ class MainActivity : AppCompatActivity() {
                         .replace(R.id.fragment_container, DictionaryFragment())
                         .addToBackStack(null)
                         .commit()
-                    toolbar.title = "Dictionary"
                     drawerLayout.closeDrawer(GravityCompat.START)
+                    toolbar.title = "Dictionary"
                 }
             }
-            false
+            return@setNavigationItemSelectedListener true
         }
     }
 
