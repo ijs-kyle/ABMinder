@@ -40,4 +40,16 @@
     <string name="fixed_cost">Fixed cost</string>
     <string name="break_even_calculator">Break-Even Point</string>
     <string name="compound_interest">Compound Interest</string>
+    <string name="tax_rate">Tax rate</string>
+    <string name="equity_weight">Equity weight</string>
+    <string name="debt_weight">Debt weight</string>
+    <string name="cost_of_equity">Cost of equity</string>
+    <string name="cost_of_debt">Cost of debt</string>
+    <string name="future_value">Future Value:</string>
+    <string name="weighted_average_cost_of_capital">Weighted Average Cost Of Capital</string>
+    <string name="time_period_years">Time period (years)</string>
+    <string name="interest_rate_percent">Interest rate</string>
+    <string name="present_value">Present Value</string>
+    <string name="compounding_periods_per_year">Compounding Periods (per year)</string>
+    <string name="time_value_of_money">Time Value Of Money</string>
 </resources>

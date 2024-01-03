@@ -62,4 +62,5 @@
         <item>light</item>
         <item>dark</item>
     </string-array>
+    <string name="tvm_result_format">%.2f</string>
 </resources>

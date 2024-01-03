@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/breakEvenCardView"
+        android:id="@+id/waccCardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="10dp"
@@ -28,7 +28,7 @@
             <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/break_even_calculator"
+                    android:text="@string/weighted_average_cost_of_capital"
                     android:fontFamily="sans-serif-black"
                     android:padding="6dp"
                     android:gravity="center"
@@ -37,98 +37,113 @@
                     android:textAllCaps="true"
                     />
 
+            <!-- Cost of Debt -->
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/fixed_cost"
+                    android:hint="@string/cost_of_debt"
                     >
 
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextFixedCost"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
-                        android:importantForAutofill="no"
-                        android:paddingHorizontal="6dp"
-                        android:ems="@integer/material_motion_duration_short_1"
-                        android:textColorHint="#757575"
-                        tools:ignore="VisualLintTextFieldSize"
-                        />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/variable_cost"
-                    >
-
-                <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextVariableCost"
+                        android:id="@+id/editTextCostOfDebt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
                         android:importantForAutofill="no"
                         android:paddingHorizontal="6dp"
                         android:textColorHint="#757575"
-                        tools:ignore="VisualLintTextFieldSize"
                         />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Cost of Equity -->
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/selling_price"
+                    android:hint="@string/cost_of_equity"
                     >
 
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextSellingPrice"
+                        android:id="@+id/editTextCostOfEquity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
-                        android:paddingHorizontal="6dp"
                         android:importantForAutofill="no"
+                        android:paddingHorizontal="6dp"
                         android:textColorHint="#757575"
-                        tools:ignore="VisualLintTextFieldSize"
                         />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/textViewBreakEvenOutput"
+            <!-- Debt Weight -->
+            <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:layout_marginTop="8dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    />
+                    android:hint="@string/debt_weight"
+                    >
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextDebtWeight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:importantForAutofill="no"
+                        android:paddingHorizontal="6dp"
+                        android:textColorHint="#757575"
+                        />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Equity Weight -->
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/equity_weight"
+                    >
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextEquityWeight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:importantForAutofill="no"
+                        android:paddingHorizontal="6dp"
+                        android:textColorHint="#757575"
+                        />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Tax Rate -->
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/tax_rate"
+                    >
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextTaxRate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:importantForAutofill="no"
+                        android:paddingHorizontal="6dp"
+                        android:textColorHint="#757575"
+                        />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false"
-                    >
+                    android:orientation="horizontal">
 
                 <Button
-                        android:id="@+id/buttonResetBreakEven"
+                    android:id="@+id/buttonSolution"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/reset"
-                        android:layout_weight="1"
-                        style="?android:attr/buttonBarButtonStyle"
-                        />
+                    android:layout_weight="1"
+                    android:text="@string/show_explanation"
+                        style="?android:attr/buttonBarButtonStyle"/>
 
-                <Button
-                        android:id="@+id/explainBreakEvenButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/show_explanation"
-                        android:layout_marginTop="8dp"
-                        android:layout_weight="1"
-                        style="?android:attr/buttonBarButtonStyle"
-                        />
 
+                <!-- Calculate Button -->
                 <Button
-                        android:id="@+id/buttonCalculateBreakEven"
+                        android:id="@+id/buttonCalculateWACC"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/calculate"
@@ -137,21 +152,25 @@
                         />
             </LinearLayout>
 
-            <ScrollView
+            <!-- Result TextView -->
+            <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewWACCResult"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:ignore="NestedScrolling"
-                    >
+                    android:padding="8dp"
+                    android:layout_marginTop="6dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    />
 
-                <TextView
-                        android:id="@+id/tVBreakEvenDescription"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:padding="8dp"
-                        android:textSize="16sp"
-                        />
-            </ScrollView>
+            <TextView
+                    android:id="@+id/tVDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:padding="8dp"
+                    android:textSize="16sp"
+                    />
+
         </LinearLayout>
     </ScrollView>
 </androidx.cardview.widget.CardView>

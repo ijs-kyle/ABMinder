@@ -1,5 +1,6 @@
 package com.mtcdb.stem.mathtrix.calculator
 
+import TimeValueOfMoneyFragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import com.mtcdb.stem.mathtrix.calculator.options.PercentageChangeFragment
 import com.mtcdb.stem.mathtrix.calculator.options.ProfitMarginFragment
 import com.mtcdb.stem.mathtrix.calculator.options.ROIFragment
 import com.mtcdb.stem.mathtrix.calculator.options.SimpleInterestFragment
+import com.mtcdb.stem.mathtrix.calculator.options.WACCFragment
 
 class CalculatorOptionsFragment : Fragment() {
 
@@ -237,6 +239,8 @@ class CalculatorOptionsFragment : Fragment() {
                 "Net Present Value (NPV)" -> NPVFragment()
                 "Return on Investment (ROI)" -> ROIFragment()
                 "Break-Even Point" -> BreakEvenFragment()
+                "Weighted Average Cost of Capital (WACC)" -> WACCFragment()
+                "Time Value of Money (TVM)" -> TimeValueOfMoneyFragment()
                 else -> null
             }
 
