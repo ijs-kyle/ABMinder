@@ -33,6 +33,4 @@ class DictionaryDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DAT
         db.execSQL("DROP TABLE IF EXISTS $DATABASE_NAME")
         onCreate(db)
     }
-
-
 }

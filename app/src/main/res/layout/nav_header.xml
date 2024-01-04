@@ -22,7 +22,7 @@
                 android:id="@+id/nav_profile_image"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/app_icon"
+                android:src="@drawable/app_icon_modified"
                 android:contentDescription="@string/app_name"
                 android:layout_gravity="start"
                 tools:ignore="ImageContrastCheck"
@@ -51,6 +51,7 @@
             android:textColor="@color/white"
             android:textAppearance="?android:textAppearanceSmall"
             android:layout_gravity="start"
+            tools:ignore="TextContrastCheck"
             />
 
 </LinearLayout>

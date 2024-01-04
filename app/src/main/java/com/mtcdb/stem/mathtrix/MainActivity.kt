@@ -15,7 +15,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -95,6 +94,7 @@ class MainActivity : AppCompatActivity() {
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
+        drawerLayout = findViewById(R.id.drawer_layout)
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
@@ -109,16 +109,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_app_bar, menu)
-
-        val settings = menu?.findItem(R.id.action_settings)
-        val progress = menu?.findItem(R.id.action_progress)
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
-            settings?.setIcon(R.drawable.baseline_settings_24_b)
-            progress?.setIcon(R.drawable.baseline_stacked_bar_chart_24)
-        } else {
-            settings?.setIcon(R.drawable.baseline_settings_24)
-            progress?.setIcon(R.drawable.progress_24)
-        }
         return true
     }
 
@@ -772,7 +762,6 @@ class DictionaryFragment: Fragment() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                // Handle search query submission if needed
                 return true
             }
 

@@ -3,6 +3,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="dialogCornerRadius">12dp</item>
+        <item name="dialogCornerRadius">8dp</item>
+        <item name="colorSurface">#F1FAFB</item>
     </style>
 </resources>
