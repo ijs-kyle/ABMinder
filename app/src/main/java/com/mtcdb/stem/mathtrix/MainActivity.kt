@@ -24,12 +24,14 @@ import com.google.android.material.navigation.NavigationView
 import com.mtcdb.stem.mathtrix.calculator.CalculatorOptionsFragment
 import com.mtcdb.stem.mathtrix.dictionary.DictionaryDatabaseHelper
 import com.mtcdb.stem.mathtrix.dictionary.DictionarySuggestionAdapter
+import com.mtcdb.stem.mathtrix.learn.LearningMenuFragment
 import com.mtcdb.stem.mathtrix.settings.SettingsActivity
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var toolbar: Toolbar
+    //private val viewModel : MainViewModel by viewModels<MainViewModel>()
+    public lateinit var toolbar: Toolbar
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var databaseHelper: DictionaryDatabaseHelper
@@ -76,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                         .addToBackStack(null)
                         .commit()
                     drawerLayout.closeDrawer(GravityCompat.START)
-                    toolbar.title = "Calculator"
+                    toolbar.title = getString(R.string.calculator)
                 }
 
                 R.id.nav_item_dictionary -> {
@@ -85,7 +87,15 @@ class MainActivity : AppCompatActivity() {
                         .addToBackStack(null)
                         .commit()
                     drawerLayout.closeDrawer(GravityCompat.START)
-                    toolbar.title = "Dictionary"
+                    toolbar.title = getString(R.string.dictionary)
+                }
+                R.id.nav_item_learn -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, LearningMenuFragment.newInstance())
+                        .addToBackStack(LearningMenuFragment.TAG)
+                        .commit()
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    toolbar.title = getString(R.string.learn)
                 }
             }
             return@setNavigationItemSelectedListener true
