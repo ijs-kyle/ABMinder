@@ -26,15 +26,22 @@ class BreakEvenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val rootView =
-            inflater.inflate(com.calculator.calculatoroptions.R.layout.fragment_break_even, container, false)
+            inflater.inflate(
+                com.calculator.calculatoroptions.R.layout.fragment_break_even,
+                container,
+                false
+            )
 
         fixedCostEditText =
             rootView.findViewById(com.calculator.calculatoroptions.R.id.editTextFixedCost)
-        variableCostEditText = rootView.findViewById(com.calculator.calculatoroptions.R.id.editTextVariableCost)
-        sellingPriceEditText = rootView.findViewById(com.calculator.calculatoroptions.R.id.editTextSellingPrice)
+        variableCostEditText =
+            rootView.findViewById(com.calculator.calculatoroptions.R.id.editTextVariableCost)
+        sellingPriceEditText =
+            rootView.findViewById(com.calculator.calculatoroptions.R.id.editTextSellingPrice)
         calculateButton =
             rootView.findViewById(com.calculator.calculatoroptions.R.id.buttonCalculateBreakEven)
-        resetButton = rootView.findViewById(com.calculator.calculatoroptions.R.id.buttonResetBreakEven)
+        resetButton =
+            rootView.findViewById(com.calculator.calculatoroptions.R.id.buttonResetBreakEven)
         resultTextView =
             rootView.findViewById(com.calculator.calculatoroptions.R.id.textViewBreakEvenOutput)
         explainButton =
@@ -84,6 +91,8 @@ class BreakEvenFragment : Fragment() {
         val sellingPrice = sellingPriceEditText.text.toString().toDoubleOrNull() ?: 0.0
 
         val breakEvenQuantity = fixedCost / (sellingPrice - variableCost)
+        val contributionMargin = (sellingPrice - variableCost) / sellingPrice
+        val sales = fixedCost / contributionMargin
 
         val explanation = """
         Break-Even Analysis helps determine the point at which total revenue equals total costs.
@@ -94,13 +103,18 @@ class BreakEvenFragment : Fragment() {
             Selling Price = $sellingPrice
             
         Formula:
-            Break-Even Quantity = Fixed Cost / (Selling Price - Variable Cost)
+            Break-Even Point (units) = Fixed Cost / (Selling Price - Variable Cost)
+            Break-Even Point (sales) = Fixed costs ÷ Contribution Margin
             
         Solution:
-            Break-Even Quantity = $fixedCost / ($sellingPrice - $variableCost)
-            Break-Even Quantity = $breakEvenQuantity units
+            Break-Even Point (units) = $fixedCost / ($sellingPrice - $variableCost
+            Break-Even Point = $breakEvenQuantity units
             
-        Therefore, the Break-Even Quantity is $breakEvenQuantity units.
+            Contribution Margin = ($sellingPrice - $variableCost) / $sellingPrice
+            Break-Even Point (sales) = $fixedCost ÷ $contributionMargin
+            Break-Even Point (sales) = $sales
+                        
+        Therefore, the Break-Even Point in units is $breakEvenQuantity and $sales in sales.
     """.trimIndent()
 
         // Display explanation in a custom dialog

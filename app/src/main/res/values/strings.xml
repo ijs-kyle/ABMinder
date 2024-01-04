@@ -63,4 +63,7 @@
         <item>dark</item>
     </string-array>
     <string name="tvm_result_format">%.2f</string>
+    <string name="learn">Learn</string>
+    <string name="break_even">Break-even:</string>
+
 </resources>

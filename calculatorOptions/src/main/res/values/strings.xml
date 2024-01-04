@@ -52,4 +52,5 @@
     <string name="present_value">Present Value</string>
     <string name="compounding_periods_per_year">Compounding Periods (per year)</string>
     <string name="time_value_of_money">Time Value Of Money</string>
+    <string name="break_even">Break-even:</string>
 </resources>
