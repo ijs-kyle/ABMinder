@@ -7,12 +7,12 @@
         android:id="@+id/constraint_layout_Main">
 
     <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="1:0.25"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:0.23"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
     <!--region Guide lines-->
     <!--region Vertical Guide lines-->
     <androidx.constraintlayout.widget.Guideline
@@ -20,14 +20,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.10"/>
+            app:layout_constraintGuide_percent="0.05"/>
 
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/constraint_guideline_marginEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.90"/>
+            app:layout_constraintGuide_percent="0.95"/>
     <!--endregion-->
     <!--region Horizontal Guidlines-->
     <androidx.constraintlayout.widget.Guideline
@@ -78,18 +78,25 @@
                     app:layout_constraintGuide_percent="0.25"/>
 
             <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/constraint_guideline_lead_title_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.30"/>
+
+            <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/constraint_guideline_trail_quarter_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.75"/>
+                    app:layout_constraintGuide_percent="0.85"/>
 
             <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/constraint_guideline_end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.95"/>
+                    app:layout_constraintGuide_percent="0.90"/>
             <!--endregion-->
             <!--region Horizontal Guidlines-->
             <androidx.constraintlayout.widget.Guideline
@@ -115,17 +122,17 @@
                     tools:srcCompat="@drawable/ic_launcher_foreground"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/constraint_guideline_start"
                     app:layout_constraintEnd_toEndOf="@id/constraint_guideline_lead_quarter_vertical"
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/text_view_title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     tools:text=" [ Title ] "
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/constraint_guideline_lead_quarter_vertical"
+                    app:layout_constraintStart_toStartOf="@id/constraint_guideline_lead_title_vertical"
                     app:layout_constraintEnd_toEndOf="@id/constraint_guideline_trail_quarter_vertical"
                     app:layout_constraintBottom_toBottomOf="parent"/>
 

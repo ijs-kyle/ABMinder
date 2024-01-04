@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_item_learn -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, LearningMenuFragment.newInstance())
-                        .addToBackStack(LearningMenuFragment.TAG)
+                        //.addToBackStack(LearningMenuFragment.TAG)
                         .commit()
                     drawerLayout.closeDrawer(GravityCompat.START)
                     toolbar.title = getString(R.string.learn)

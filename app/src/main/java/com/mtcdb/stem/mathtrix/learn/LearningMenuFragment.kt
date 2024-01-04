@@ -38,6 +38,8 @@ class LearningMenuFragment : Fragment(), LearningListener {
                 LearningModel(0, "Sample 1", R.drawable.ic_launcher_foreground),
                 LearningModel(1, "Sample 2", R.drawable.ic_launcher_foreground),
                 LearningModel(2, "Sample 3", R.drawable.ic_launcher_foreground),
+                LearningModel(3, "Sample 4", R.drawable.ic_launcher_foreground),
+                LearningModel(4, "Sample 5", R.drawable.ic_launcher_foreground),
             )
         )
     }
@@ -49,7 +51,7 @@ class LearningMenuFragment : Fragment(), LearningListener {
     override fun onClickModel(model : LearningModel, position: Int) {
         mainActivity.supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, SimpleInterestFragment.newInstance())
-            .addToBackStack(LearningMenuFragment.TAG)
+            //.addToBackStack(SimpleInterestFragment.TAG)
             .commit()
         mainActivity.toolbar.title = SimpleInterestFragment.TAG
     }
