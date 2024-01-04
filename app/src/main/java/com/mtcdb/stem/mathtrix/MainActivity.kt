@@ -107,8 +107,10 @@ class MainActivity : AppCompatActivity() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else if (supportFragmentManager.backStackEntryCount > 0) {
+            toolbar.title = getString(R.string.app_name)
             super.onBackPressed()
         } else {
+            toolbar.title = getString(R.string.app_name)
             super.onBackPressed()
         }
     }
