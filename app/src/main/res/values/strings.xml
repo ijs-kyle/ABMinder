@@ -65,5 +65,6 @@
     <string name="tvm_result_format">%.2f</string>
     <string name="learn">Learn</string>
     <string name="break_even">Break-even:</string>
-
+    <string name="calculating_simple_interest">Calculating simple interest:</string>
+    <string name="example">Example:</string>
 </resources>

@@ -24,12 +24,14 @@ import com.google.android.material.navigation.NavigationView
 import com.mtcdb.stem.mathtrix.calculator.CalculatorOptionsFragment
 import com.mtcdb.stem.mathtrix.dictionary.DictionaryDatabaseHelper
 import com.mtcdb.stem.mathtrix.dictionary.DictionarySuggestionAdapter
+import com.mtcdb.stem.mathtrix.learn.LearningMenuFragment
 import com.mtcdb.stem.mathtrix.settings.SettingsActivity
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var toolbar: Toolbar
+    //private val viewModel : LearnViewModel by viewModels<LearnViewModel>()
+    public lateinit var toolbar: Toolbar
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var databaseHelper: DictionaryDatabaseHelper
@@ -76,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                         .addToBackStack(null)
                         .commit()
                     drawerLayout.closeDrawer(GravityCompat.START)
-                    toolbar.title = "Calculator"
+                    toolbar.title = getString(R.string.calculator)
                 }
 
                 R.id.nav_item_dictionary -> {
@@ -85,7 +87,14 @@ class MainActivity : AppCompatActivity() {
                         .addToBackStack(null)
                         .commit()
                     drawerLayout.closeDrawer(GravityCompat.START)
-                    toolbar.title = "Dictionary"
+                    toolbar.title = getString(R.string.dictionary)
+                }
+                R.id.nav_item_learn -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, LearningMenuFragment.newInstance(), LearningMenuFragment::class.java.getSimpleName())
+                        .commitNow()
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    toolbar.title = getString(R.string.learn)
                 }
             }
             return@setNavigationItemSelectedListener true
@@ -97,14 +106,13 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawer_layout)
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
+        } else if (supportFragmentManager.backStackEntryCount > 0) {
+            toolbar.title = getString(R.string.app_name)
+            super.onBackPressed()
         } else {
-            if (supportFragmentManager.backStackEntryCount > 0) {
-                supportFragmentManager.popBackStack()
-            } else {
-                super.onBackPressed()
-            }
+            toolbar.title = getString(R.string.app_name)
+            super.onBackPressed()
         }
-        super.onBackPressed()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />-->
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/design_default_color_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/constraint_guideline_lead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/constraint_guideline_trail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_formula"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding"
+                tools:text="[Formula]"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="@id/constraint_guideline_lead"
+                app:layout_constraintEnd_toEndOf="@id/constraint_guideline_trail" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_units"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding"
+                tools:text="[Units]"
+                app:layout_constraintTop_toBottomOf="@id/text_view_formula"
+                app:layout_constraintStart_toStartOf="@id/constraint_guideline_lead"
+                app:layout_constraintEnd_toEndOf="@id/constraint_guideline_trail" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_rate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding"
+                tools:text="[Rate]"
+                app:layout_constraintTop_toBottomOf="@id/text_view_units"
+                app:layout_constraintStart_toStartOf="@id/constraint_guideline_lead"
+                app:layout_constraintEnd_toEndOf="@id/constraint_guideline_trail" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_estimating"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding"
+                tools:text="[Estimating]"
+                app:layout_constraintTop_toBottomOf="@id/text_view_rate"
+                app:layout_constraintStart_toStartOf="@id/constraint_guideline_lead"
+                app:layout_constraintEnd_toEndOf="@id/constraint_guideline_trail" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_shortcuts"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding"
+                android:paddingBottom="@dimen/padding"
+                tools:text="[Shortcuts]"
+                app:layout_constraintTop_toBottomOf="@id/text_view_estimating"
+                app:layout_constraintStart_toStartOf="@id/constraint_guideline_lead"
+                app:layout_constraintEnd_toEndOf="@id/constraint_guideline_trail" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/cardview_dark_background"
+            app:layout_constraintTop_toBottomOf="@id/text_view_shortcuts"
+            app:layout_constraintStart_toStartOf="@id/constraint_guideline_lead"
+            app:layout_constraintEnd_toEndOf="@id/constraint_guideline_trail" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_example"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding"
+                android:text="@string/example"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/view"
+                app:layout_constraintStart_toStartOf="@id/constraint_guideline_lead"
+                app:layout_constraintEnd_toEndOf="@id/constraint_guideline_trail" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_calculating_simple_interest"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding"
+                android:text="@string/calculating_simple_interest"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/text_view_example"
+                app:layout_constraintStart_toStartOf="@id/constraint_guideline_lead"
+                app:layout_constraintEnd_toEndOf="@id/constraint_guideline_trail" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_solution"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding"
+                tools:text="[ Solution ]"
+                app:layout_constraintTop_toBottomOf="@id/text_view_calculating_simple_interest"
+                app:layout_constraintStart_toStartOf="@id/constraint_guideline_lead"
+                app:layout_constraintEnd_toEndOf="@id/constraint_guideline_trail" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
