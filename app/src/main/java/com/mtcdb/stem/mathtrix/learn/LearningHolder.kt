@@ -18,7 +18,7 @@ public class LearningHolder : RecyclerView.ViewHolder {
         this.icon = itemView.findViewById<ImageView>(R.id.image_view_icon)
     }
 
-    public fun bindDataToViewHolder(model : LearningModel, position : Int) {
+    public fun bindDataToViewHolder(model : LearnModel, position : Int) {
         title.setText(model.title)
         icon.setImageResource(model.icon)
         itemView.setOnClickListener {

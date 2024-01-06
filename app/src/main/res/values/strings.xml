@@ -67,4 +67,5 @@
     <string name="break_even">Break-even:</string>
     <string name="calculating_simple_interest">Calculating simple interest:</string>
     <string name="example">Example:</string>
+    <string name="assets_path">file:///android_asset/%s</string>
 </resources>
