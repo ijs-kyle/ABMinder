@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.mtcdb.stem.mathtrix.MainActivity
 import com.mtcdb.stem.mathtrix.R
 
-class TipsFragment : Fragment() {
+public class TipsFragment : Fragment() {
 
     companion object {
         public val TAG : String = TipsFragment::class.java.getSimpleName()
@@ -35,6 +35,7 @@ class TipsFragment : Fragment() {
         model = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) arguments?.getSerializable(MODEL, LearnModel::class.java)
         else arguments?.getSerializable(MODEL) as? LearnModel
     }
+
     override fun onCreateView (inflater : LayoutInflater, container : ViewGroup?, savedInstanceState : Bundle?) : View? {
         return inflater.inflate(R.layout.fragment_simple_interest, container, false)
     }

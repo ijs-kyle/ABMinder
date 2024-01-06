@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mtcdb.stem.mathtrix.MainActivity
 import com.mtcdb.stem.mathtrix.R
 
-class LearnFragment : Fragment(), LearningListener {
+public class LearnFragment : Fragment(), LearningListener {
 
     companion object {
         public val TAG : String = LearnFragment::class.java.getSimpleName()
@@ -26,7 +26,6 @@ class LearnFragment : Fragment(), LearningListener {
     }
     override fun onCreateView (inflater : LayoutInflater, container : ViewGroup?, savedInstanceState : Bundle?) : View? {
         return inflater.inflate(R.layout.fragment_learning_menu, container, false)
-
     }
 
     override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
@@ -34,11 +33,11 @@ class LearnFragment : Fragment(), LearningListener {
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView?.setAdapter( LearningAdapter(this@LearnFragment,
             listOf<LearnModel>(
-                LearnModel(0, "Simple Interest", R.drawable.ic_launcher_foreground, "simple_interest.html"),
-                LearnModel(1, "Ordinary Simple Interest", R.drawable.ic_launcher_foreground, "ordinary_simple_interest.html"),
-                LearnModel(2, "Net Present Value", R.drawable.ic_launcher_foreground, "net_present_value.html.html"),
-                LearnModel(3, "Profit and Loss", R.drawable.ic_launcher_foreground, "profit_and_loss.html"),
-                LearnModel(4, "Taxes and Tax Laws", R.drawable.ic_launcher_foreground, "taxes_and_tax_laws.html"),
+                LearnModel(0, title = "Simple Interest", html = "simple_interest.html"),
+                LearnModel(1, title = "Ordinary Simple Interest", html = "ordinary_simple_interest.html"),
+                LearnModel(2, title = "Net Present Value", html =  "net_present_value.html.html"),
+                LearnModel(3, title = "Profit and Loss", html = "profit_and_loss.html"),
+                LearnModel(4, title = "Taxes and Tax Laws", html = "taxes_and_tax_laws.html"),
             )
         ) )
     }

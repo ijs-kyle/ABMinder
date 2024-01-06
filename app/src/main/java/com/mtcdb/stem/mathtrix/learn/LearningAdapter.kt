@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mtcdb.stem.mathtrix.R
 
-class LearningAdapter : RecyclerView.Adapter<LearningHolder> {
+public class LearningAdapter : RecyclerView.Adapter<LearningHolder> {
 
     companion object {
         private val TAG = LearningAdapter::class.java.getSimpleName()
