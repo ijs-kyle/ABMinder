@@ -34,10 +34,10 @@ public class LearnFragment : Fragment(), LearningListener {
         recyclerView?.setAdapter( LearningAdapter(this@LearnFragment,
             listOf<LearnModel>(
                 LearnModel(0, title = "Simple Interest", html = "simple_interest.html"),
-                LearnModel(1, title = "Ordinary Simple Interest", html = "ordinary_simple_interest.html"),
-                LearnModel(2, title = "Net Present Value", html =  "net_present_value.html.html"),
-                LearnModel(3, title = "Profit and Loss", html = "profit_and_loss.html"),
-                LearnModel(4, title = "Taxes and Tax Laws", html = "taxes_and_tax_laws.html"),
+                LearnModel(0, title = "Compound Interest", html = "compound_interest.html"),
+                LearnModel(3, title = "Profit Margin", html = "profit_margin.html"),
+                LearnModel(2, title = "Net Profit Value", html =  "net_profit_value.html"),
+                LearnModel(4, title = "Return of Interest", html = "return_of_interest.html"),
             )
         ) )
     }
