@@ -245,10 +245,9 @@ class CalculatorOptionsFragment : Fragment() {
             }
 
             if (calculatorFragment != null) {
-                recyclerView.visibility = View.GONE
                 childFragmentManager.beginTransaction()
                     .replace(R.id.calculator_container, calculatorFragment)
-
+                    .addToBackStack(null)
                     .commit()
                 searchView.clearFocus()
                 searchView.visibility = View.GONE

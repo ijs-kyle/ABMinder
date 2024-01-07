@@ -5,68 +5,95 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.mtcdb.stem.mathtrix.R
 
 class QuizFragment : Fragment() {
 
-    private lateinit var viewModel: QuizViewModel
-    private lateinit var optionA: Button
-    private lateinit var optionB: Button
-    private lateinit var optionC: Button
     private lateinit var questionTextView: TextView
+    private lateinit var optionsRadioGroup: RadioGroup
+    private lateinit var submitButton: Button
+    private lateinit var difficultyLevel: String
+    private lateinit var database: QuizDatabase
+    private lateinit var questions: List<QuizEntity>
+    private val correctAnswers = listOf(0, 0) // Example values, modify as needed
+
+    private var currentQuestionIndex = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_quiz, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_quiz, container, false)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        // Initialize views
+        questionTextView = view.findViewById(R.id.questionTextView)
+        optionsRadioGroup = view.findViewById(R.id.optionsRadioGroup)
+        submitButton = view.findViewById(R.id.submitButton)
 
-        viewModel = ViewModelProvider(
-            this,
-            QuizViewModelFactory(QuizRepository(QuizDatabase.getDatabase(requireContext()).quizDao()))
-        )[QuizViewModel::class.java]
+        // Display the first question
+        displayQuestion()
 
-        // Observe question changes
-        viewModel.currentQuestion.observe(viewLifecycleOwner) { question ->
-            displayQuestion(question)
+        // Fetch questions based on difficulty when the fragment is created
+
+
+        difficultyLevel = "Easy"
+
+        // Set a listener for the submit button
+        submitButton.setOnClickListener {
+            checkAnswer()
         }
 
-        // Observe quiz completion
-        viewModel.quizCompleted.observe(viewLifecycleOwner) { isCompleted ->
-            if (isCompleted) {
-                displayQuizResult()
+        return view
+    }
+
+    private fun displayQuestion() {
+        // Check if questions is not empty before accessing its elements
+        if (questions.isNotEmpty() && currentQuestionIndex < questions.size) {
+            questionTextView.text = questions[currentQuestionIndex].question
+
+            optionsRadioGroup.removeAllViews()
+            for ((index, option) in questions[currentQuestionIndex].options.withIndex()) {
+                val radioButton = RadioButton(context)
+                radioButton.text = option
+                radioButton.id = index
+                optionsRadioGroup.addView(radioButton)
             }
+        } else {
+            // Handle the case where questions is empty or all questions have been displayed
+            // You can add your logic here
         }
-
-        // Set up button click listeners
-        optionA.setOnClickListener { onOptionSelected(optionA.text.toString()) }
-        optionB.setOnClickListener { onOptionSelected(optionB.text.toString()) }
-        optionC.setOnClickListener { onOptionSelected(optionC.text.toString()) }
-
-        // Start the quiz
-        viewModel.startQuiz()
     }
 
-    private fun displayQuestion(question: QuizQuestion) {
-        questionTextView.text = question.question
-        optionA.text = question.optionA
-        optionB.text = question.optionB
-        optionC.text = question.optionC
-    }
+    private fun checkAnswer() {
+        val selectedOptionId = optionsRadioGroup.checkedRadioButtonId
 
-    private fun onOptionSelected(selectedOption: String) {
-        viewModel.checkAnswer(selectedOption)
-    }
+        if (selectedOptionId != -1) {
+            val selectedOptionIndex = optionsRadioGroup.indexOfChild(optionsRadioGroup.findViewById(selectedOptionId))
 
-    private fun displayQuizResult() {
-        // Implement logic to display quiz result (e.g., navigate to result fragment)
-        // You can pass the quiz result to the result fragment
+            if (selectedOptionIndex == correctAnswers[currentQuestionIndex]) {
+                // Correct answer, you can add your logic here
+                Toast.makeText(context, "Correct!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Incorrect. The correct answer is ${questions[currentQuestionIndex].options[correctAnswers[currentQuestionIndex]]}", Toast.LENGTH_SHORT).show()
+            }
+
+            // Move to the next question
+            currentQuestionIndex++
+
+            if (currentQuestionIndex < questions.size) {
+                displayQuestion()
+            } else {
+                // End of the quiz
+                Toast.makeText(context, "Quiz completed!", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            // No option selected
+            Toast.makeText(context, "Please select an option.", Toast.LENGTH_SHORT).show()
+        }
     }
 }

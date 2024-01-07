@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_graph"
+        app:startDestination="@id/difficultyLevelFragment">
+
+
+    <fragment
+            android:id="@+id/difficultyLevelFragment"
+            android:name="com.mtcdb.stem.mathtrix.quiz.DifficultyLevelFragment"
+            android:label="DifficultyLevelFragment"
+            tools:layout="@layout/fragment_difficulty_level">
+        <action
+                android:id="@+id/action_difficultyLevelFragment_to_quizFragment"
+                app:destination="@id/quizFragment" />
+
+    </fragment>
+
+    <fragment
+            android:id="@+id/quizFragment"
+            android:name="com.mtcdb.stem.mathtrix.quiz.QuizFragment"
+            android:label="QuizFragment"
+            tools:layout="@layout/fragment_quiz">
+        <!-- Add any actions or arguments for QuizFragment if needed -->
+    </fragment>
+
+</navigation>

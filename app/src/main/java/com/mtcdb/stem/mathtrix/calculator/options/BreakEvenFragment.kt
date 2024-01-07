@@ -107,7 +107,7 @@ class BreakEvenFragment : Fragment() {
             Break-Even Point (sales) = Fixed costs ÷ Contribution Margin
             
         Solution:
-            Break-Even Point (units) = $fixedCost / ($sellingPrice - $variableCost
+            Break-Even Point (units) = $fixedCost / ($sellingPrice - $variableCost)
             Break-Even Point = $breakEvenQuantity units
             
             Contribution Margin = ($sellingPrice - $variableCost) / $sellingPrice

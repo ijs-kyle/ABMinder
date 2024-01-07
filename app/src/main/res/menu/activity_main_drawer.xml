@@ -17,5 +17,9 @@
                 android:id="@+id/nav_item_learn"
                 android:title="@string/learn"
                 android:icon="@drawable/learning" />
+
+        <item android:id="@+id/nav_item_quiz"
+              android:title="@string/quiz"
+              android:icon="@drawable/quiz"  />
     </group>
 </menu>

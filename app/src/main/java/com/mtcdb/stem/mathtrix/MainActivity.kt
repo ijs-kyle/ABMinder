@@ -25,13 +25,14 @@ import com.mtcdb.stem.mathtrix.calculator.CalculatorOptionsFragment
 import com.mtcdb.stem.mathtrix.dictionary.DictionaryDatabaseHelper
 import com.mtcdb.stem.mathtrix.dictionary.DictionarySuggestionAdapter
 import com.mtcdb.stem.mathtrix.learn.LearningMenuFragment
+import com.mtcdb.stem.mathtrix.quiz.DifficultyLevelFragment
 import com.mtcdb.stem.mathtrix.settings.SettingsActivity
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
     //private val viewModel : LearnViewModel by viewModels<LearnViewModel>()
-    public lateinit var toolbar: Toolbar
+    lateinit var toolbar: Toolbar
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var databaseHelper: DictionaryDatabaseHelper
@@ -43,9 +44,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, DictionaryFragment())
-            .commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DictionaryFragment()).commitNow()
+
 
         insertTermsIntoDatabase()
         databaseHelper = DictionaryDatabaseHelper(this)
@@ -75,7 +75,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_item_calculator -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, CalculatorOptionsFragment())
-                        .addToBackStack(null)
                         .commit()
                     drawerLayout.closeDrawer(GravityCompat.START)
                     toolbar.title = getString(R.string.calculator)
@@ -84,17 +83,23 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_item_dictionary -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, DictionaryFragment())
-                        .addToBackStack(null)
                         .commit()
                     drawerLayout.closeDrawer(GravityCompat.START)
                     toolbar.title = getString(R.string.dictionary)
                 }
                 R.id.nav_item_learn -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, LearningMenuFragment.newInstance(), LearningMenuFragment::class.java.getSimpleName())
+                        .replace(R.id.fragment_container, LearningMenuFragment.newInstance(), LearningMenuFragment::class.java.simpleName)
                         .commitNow()
                     drawerLayout.closeDrawer(GravityCompat.START)
                     toolbar.title = getString(R.string.learn)
+                }
+                R.id.nav_item_quiz -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, DifficultyLevelFragment())
+                        .commit()
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    toolbar.title = getString(R.string.quiz)
                 }
             }
             return@setNavigationItemSelectedListener true
