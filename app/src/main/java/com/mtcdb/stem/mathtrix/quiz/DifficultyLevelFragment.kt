@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import com.mtcdb.stem.mathtrix.MainActivity
 import com.mtcdb.stem.mathtrix.R
 
 class DifficultyLevelFragment : Fragment() {
@@ -15,9 +13,6 @@ class DifficultyLevelFragment : Fragment() {
     private lateinit var easyButton: Button
     private lateinit var mediumButton: Button
     private lateinit var hardButton: Button
-    private lateinit var navController: NavController
-    private lateinit var mainActivity: MainActivity
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,19 +24,30 @@ class DifficultyLevelFragment : Fragment() {
         mediumButton = view.findViewById(R.id.mediumButton)
         hardButton = view.findViewById(R.id.hardButton)
 
-
         easyButton.setOnClickListener {
-
+            navigateToQuizFragment("Easy")
         }
 
         mediumButton.setOnClickListener {
-
+            navigateToQuizFragment("Medium")
         }
 
         hardButton.setOnClickListener {
-
+            navigateToQuizFragment("Hard")
         }
 
         return view
+    }
+
+    private fun navigateToQuizFragment(difficultyLevel: String) {
+        val quizFragment = QuizFragment()
+        val bundle = Bundle()
+        bundle.putString("difficultyLevel", difficultyLevel)
+        quizFragment.arguments = bundle
+
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, quizFragment) // Replace R.id.fragmentContainer with the ID of your fragment container
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }

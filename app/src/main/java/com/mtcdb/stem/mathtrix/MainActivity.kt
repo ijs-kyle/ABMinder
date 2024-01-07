@@ -25,6 +25,7 @@ import com.mtcdb.stem.mathtrix.calculator.CalculatorOptionsFragment
 import com.mtcdb.stem.mathtrix.dictionary.DictionaryDatabaseHelper
 import com.mtcdb.stem.mathtrix.dictionary.DictionarySuggestionAdapter
 import com.mtcdb.stem.mathtrix.learn.LearnFragment
+import com.mtcdb.stem.mathtrix.quiz.DifficultyLevelFragment
 import com.mtcdb.stem.mathtrix.settings.SettingsActivity
 
 @Suppress("DEPRECATION")
@@ -95,6 +96,15 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                     drawerLayout.closeDrawer(GravityCompat.START)
                     toolbar.title = getString(R.string.learn)
+                }
+
+                R.id.nav_item_quiz -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, DifficultyLevelFragment())
+                        .addToBackStack(null)
+                        .commit()
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    toolbar.title = getString(R.string.quiz)
                 }
             }
             return@setNavigationItemSelectedListener true

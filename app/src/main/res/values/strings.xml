@@ -76,4 +76,10 @@
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
     <string name="quiz">Quiz</string>
+    <string name="quizDescription">Choose your preferred difficulty level:\n   - Easy: Suitable for beginners or those looking for a foundational understanding.\n   - Medium: A moderate challenge for individuals with a basic understanding of business mathematics.\n   - Hard: Designed for advanced users seeking to test their expertise in complex business math scenarios.</string>
+    <string name="instructions">Instructions:</string>
+    <string name="option_1">Option 1</string>
+    <string name="option_2">Option 2</string>
+    <string name="option_3">Option 3</string>
+    <string name="next">Next</string>
 </resources>
