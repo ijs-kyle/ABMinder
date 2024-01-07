@@ -22,6 +22,7 @@ class CompoundInterestFragment : Fragment() {
     private lateinit var resultTextView: TextView
     private lateinit var explainButton: Button
     private lateinit var descriptionTextView: TextView
+    private lateinit var compoundingPeriods: EditText
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -38,6 +39,7 @@ class CompoundInterestFragment : Fragment() {
         resultTextView = rootView.findViewById(com.calculator.calculatoroptions.R.id.textViewResult)
         descriptionTextView = rootView.findViewById(R.id.tVCalculationOptionDescription)
         explainButton = rootView.findViewById(com.calculator.calculatoroptions.R.id.explainButton)
+        compoundingPeriods = rootView.findViewById(com.calculator.calculatoroptions.R.id.editTextCompoundingPeriods)
 
         calculateButton.setOnClickListener {
             calculateButton.clearFocus()
@@ -82,18 +84,24 @@ class CompoundInterestFragment : Fragment() {
         val principal = principalEditText.text.toString().toDoubleOrNull() ?: 0.0
         val rate = rateEditText.text.toString().toDoubleOrNull() ?: 0.0
         val time = timeEditText.text.toString().toDoubleOrNull() ?: 0.0
+        val periods = compoundingPeriods.text.toString().toDoubleOrNull() ?: 0.0
+        val rated = rate / 100
+        val perTime = periods * time
 
-        val compoundInterest = principal * (1 + rate / 100).pow(time)
+        val compoundInterest = principal * (1 + (rated / periods)).pow(perTime)
 
-        resultTextView.text = (compoundInterest - principal).toString()
+        resultTextView.text = compoundInterest.toString()
     }
 
     private fun showExplanationDialog() {
         val principal = principalEditText.text.toString().toDoubleOrNull() ?: 0.0
         val rate = rateEditText.text.toString().toDoubleOrNull() ?: 0.0
         val time = timeEditText.text.toString().toDoubleOrNull() ?: 0.0
+        val periods = compoundingPeriods.text.toString().toDoubleOrNull() ?: 0.0
+        val rated = rate / 100
+        val perTime = periods * time
 
-        val compoundInterest = principal * (1 + rate / 100).pow(time)
+        val compoundInterest = principal * (1 + (rated / periods)).pow(perTime)
         val explanation = """
             Given:
                 Principal Amount = $principal
@@ -104,10 +112,10 @@ class CompoundInterestFragment : Fragment() {
                 A = P * (1 + (R / N))^(N * T)
                 
             Solution:
-                A = $principal * (1 + ($rate / 100)) ^ $time
+                A = $principal * (1 + ($rate / $periods))^($periods * $time)
                 A = $compoundInterest
                 
-            Therefore, the Compound Interest is ${compoundInterest - principal}    
+            Therefore, the Compound Interest is $compoundInterest    
         """.trimIndent()
 
         // Display explanation in a custom dialog

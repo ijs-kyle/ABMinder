@@ -113,6 +113,31 @@
                         tools:ignore="VisualLintTextFieldSize"
                         />
             </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    app:cardCornerRadius="32dp"
+                    app:cardElevation="4dp"
+                    app:contentPadding="4dp"
+                    app:contentPaddingLeft="16dp"
+                    app:contentPaddingRight="16dp"
+                    >
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextCompoundingPeriods"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/compounding_periods_per_year"
+                        android:inputType="numberDecimal"
+                        android:paddingHorizontal="6dp"
+                        android:importantForAutofill="no"
+                        android:minHeight="48dp"
+                        android:textColorHint="#757575"
+                        tools:ignore="VisualLintTextFieldSize"
+                        />
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
         <LinearLayout
