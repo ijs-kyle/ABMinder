@@ -6,21 +6,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mtcdb.stem.mathtrix.R
 
-class LearningAdapter : RecyclerView.Adapter<LearningHolder> {
+public class LearningAdapter : RecyclerView.Adapter<LearningHolder> {
 
     companion object {
         private val TAG = LearningAdapter::class.java.getSimpleName()
     }
 
     private val listener : LearningListener
-    private val list : MutableList<LearningModel> = mutableListOf<LearningModel>()
+    private val list : MutableList<LearnModel> = mutableListOf<LearnModel>()
 
     constructor(listener : LearningListener) : super() {
         this.listener = listener
         setHasStableIds(false)
     }
 
-    constructor(listener : LearningListener, list : List<LearningModel>) : super() {
+    constructor(listener : LearningListener, list : List<LearnModel>) : super() {
         this.listener = listener
         setItems(list)
         setHasStableIds(false)
@@ -44,7 +44,7 @@ class LearningAdapter : RecyclerView.Adapter<LearningHolder> {
         return super.getItemId(position)
     }
 
-    public fun setItems(items : List<LearningModel>) {
+    public fun setItems(items : List<LearnModel>) {
         list.clear()
         list.addAll(items)
     }

@@ -1,6 +1,6 @@
 package com.mtcdb.stem.mathtrix.learn
 
-interface LearningListener {
+public interface LearningListener {
 
-    fun onClickModel(model : LearningModel, position : Int)
+    public fun onClickModel(model : LearnModel, position : Int)
 }
