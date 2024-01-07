@@ -2,8 +2,11 @@ package com.mtcdb.stem.mathtrix
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.WindowInsets
+import android.view.WindowInsetsController
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
@@ -32,6 +35,8 @@ class WelcomeActivity : AppCompatActivity() {
             navigateToMainActivity()
         }
 
+        setFullScreen()
+
     }
 
     private fun isWelcomeScreenShown(): Boolean {
@@ -50,5 +55,22 @@ class WelcomeActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun setFullScreen() {
+        // For devices with Android 12 (API level 31) and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            window.insetsController?.apply {
+                hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
+                systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            }
+        } else {
+            // For devices with Android versions below 12
+            window.decorView.apply {
+                systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+            }
+        }
     }
 }

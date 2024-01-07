@@ -68,4 +68,12 @@
     <string name="calculating_simple_interest">Calculating simple interest:</string>
     <string name="example">Example:</string>
     <string name="assets_path">file:///android_asset/%s</string>
+    <string name="description">Welcome to MathTrix, the go-to app for Business Mathematics tailored for ABM students. MathTrix combines a powerful Business Mathematics Calculator, an extensive Business Mathematics Dictionary, interactive lessons, insightful tips, engaging quizzes, and progress tracking—all in one comprehensive application.</string>
+    <string name="get_started">Get started</string>
+    <string name="welcome_to_mathtrix">MathTrix</string>
+    <string name="choose_difficulty_level">Choose difficulty level</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="quiz">Quiz</string>
 </resources>
