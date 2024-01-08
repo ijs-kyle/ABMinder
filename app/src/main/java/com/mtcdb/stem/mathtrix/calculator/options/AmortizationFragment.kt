@@ -123,5 +123,4 @@ class AmortizationFragment : Fragment() {
             .setPositiveButton("OK", null)
             .show()
     }
-
 }

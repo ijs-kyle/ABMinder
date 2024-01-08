@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-
 }
 
 android {
@@ -62,10 +61,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     implementation 'io.github.glailton.expandabletextview:expandabletextview:1.0.4'
 
-    def room_version = "2.6.1"
-
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
 
     //navigation controller
     def nav_version_ktx = "2.6.7"

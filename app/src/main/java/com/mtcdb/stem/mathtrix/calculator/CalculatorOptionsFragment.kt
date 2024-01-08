@@ -1,12 +1,13 @@
 package com.mtcdb.stem.mathtrix.calculator
 
 import TimeValueOfMoneyFragment
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,7 +27,9 @@ class CalculatorOptionsFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CalculationOptionAdapter
     private lateinit var searchView: SearchView
+    private lateinit var toolbar: Toolbar
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,8 +38,6 @@ class CalculatorOptionsFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_calculator_options, container, false)
 
         searchView = rootView.findViewById(R.id.calculatorSearchView)
-        val searchIcon = searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_mag_icon)
-        searchIcon.visibility = View.GONE
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -245,12 +246,11 @@ class CalculatorOptionsFragment : Fragment() {
             }
 
             if (calculatorFragment != null) {
-                childFragmentManager.beginTransaction()
+                parentFragmentManager.beginTransaction()
                     .replace(R.id.calculator_container, calculatorFragment)
                     .addToBackStack(null)
                     .commit()
                 searchView.clearFocus()
-                searchView.visibility = View.GONE
             }
         }
         recyclerView.adapter = adapter
