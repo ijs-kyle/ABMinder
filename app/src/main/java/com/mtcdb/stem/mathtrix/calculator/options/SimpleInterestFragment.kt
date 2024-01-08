@@ -83,7 +83,7 @@ class SimpleInterestFragment : Fragment() {
 
         val simpleInterest = (principal * rate * time) / 100.0
 
-        resultTextView.text = simpleInterest.toString()
+        resultTextView.text = getString(R.string.simple_interestz, simpleInterest.toString())
     }
 
     private fun showExplanationDialog() {

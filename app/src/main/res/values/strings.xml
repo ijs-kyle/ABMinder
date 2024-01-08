@@ -82,4 +82,8 @@
     <string name="option_2">Option 2</string>
     <string name="option_3">Option 3</string>
     <string name="next">Next</string>
+    <string name="principal">Principal amount</string>
+    <string name="rate">Rate of interest</string>
+    <string name="time_in_years">Time (in years)</string>
+    <string name="simple_interestz">Simple Interest:\n %1$s</string>
 </resources>

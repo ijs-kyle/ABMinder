@@ -37,12 +37,12 @@ public class TipsFragment : Fragment() {
     }
 
     override fun onCreateView (inflater : LayoutInflater, container : ViewGroup?, savedInstanceState : Bundle?) : View? {
-        return inflater.inflate(R.layout.fragment_simple_interest, container, false)
+        return inflater.inflate(R.layout.tips_fragment, container, false)
     }
 
     override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        webView = view.findViewById<WebView>(R.id.web_view)
+        webView = view.findViewById(R.id.web_view)
         //webView?.settings?.setJavaScriptEnabled(true)
     }
 
