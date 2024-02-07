@@ -164,6 +164,11 @@ class NPVFragment : Fragment() {
         val cf3 = cashFlow3EditText.text.toString().toDoubleOrNull() ?: 0.0
         val cf4 = cashFlow4EditText.text.toString().toDoubleOrNull() ?: 0.0
         val cf5 = cashFlow5EditText.text.toString().toDoubleOrNull() ?: 0.0
+        val cf6 = cashFlow6EditText.text.toString().toDoubleOrNull() ?: 0.0
+        val cf7 = cashFlow7EditText.text.toString().toDoubleOrNull() ?: 0.0
+        val cf8 = cashFlow8EditText.text.toString().toDoubleOrNull() ?: 0.0
+        val cf9 = cashFlow9EditText.text.toString().toDoubleOrNull() ?: 0.0
+        val cf10 = cashFlow10EditText.text.toString().toDoubleOrNull() ?: 0.0
 
         val rated = rate / 100
         val numberOfYears = numberOfYearsEditText.text.toString().toIntOrNull() ?: 0
@@ -173,8 +178,13 @@ class NPVFragment : Fragment() {
         val npv3 = if (numberOfYears >= 3) cf3 / (1 + rated).pow(3) else 0.0
         val npv4 = if (numberOfYears >= 4) cf4 / (1 + rated).pow(4) else 0.0
         val npv5 = if (numberOfYears >= 5) cf5 / (1 + rated).pow(5) else 0.0
+        val npv6 = if (numberOfYears >= 6) cf6 / (1 + rated).pow(6) else 0.0
+        val npv7 = if (numberOfYears >= 7) cf7 / (1 + rated).pow(7) else 0.0
+        val npv8 = if (numberOfYears >= 8) cf8 / (1 + rated).pow(8) else 0.0
+        val npv9 = if (numberOfYears >= 9) cf9 / (1 + rated).pow(9) else 0.0
+        val npv10 = if (numberOfYears >= 10) cf10 / (1 + rated).pow(10) else 0.0
 
-        val npv = npv1 + npv2 + npv3 + npv4 + npv5 - initialInvestment
+        val npv = npv1 + npv2 + npv3 + npv4 + npv5 + npv6 + npv7 + npv8 + npv9 + npv10 - initialInvestment
 
         resultTextView.text = npv.toString()
     }
@@ -203,9 +213,14 @@ class NPVFragment : Fragment() {
         val cf3 = cashFlow3EditText.text.toString().toDoubleOrNull() ?: 0.0
         val cf4 = cashFlow4EditText.text.toString().toDoubleOrNull() ?: 0.0
         val cf5 = cashFlow5EditText.text.toString().toDoubleOrNull() ?: 0.0
+        val cf6 = cashFlow6EditText.text.toString().toDoubleOrNull() ?: 0.0
+        val cf7 = cashFlow7EditText.text.toString().toDoubleOrNull() ?: 0.0
+        val cf8 = cashFlow8EditText.text.toString().toDoubleOrNull() ?: 0.0
+        val cf9 = cashFlow9EditText.text.toString().toDoubleOrNull() ?: 0.0
+        val cf10 = cashFlow10EditText.text.toString().toDoubleOrNull() ?: 0.0
 
         val cashFlows = listOf(
-            cf1, cf2, cf3, cf4, cf5
+            cf1, cf2, cf3, cf4, cf5, cf6, cf7, cf8, cf9, cf10
         )
 
         val rated = rate / 100
@@ -216,9 +231,14 @@ class NPVFragment : Fragment() {
         val npv3 = if (numberOfYears >= 3) cf3 / (1 + rated).pow(3) else 0.0
         val npv4 = if (numberOfYears >= 4) cf4 / (1 + rated).pow(4) else 0.0
         val npv5 = if (numberOfYears >= 5) cf5 / (1 + rated).pow(5) else 0.0
+        val npv6 = if (numberOfYears >= 6) cf5 / (1 + rated).pow(6) else 0.0
+        val npv7 = if (numberOfYears >= 7) cf5 / (1 + rated).pow(7) else 0.0
+        val npv8 = if (numberOfYears >= 8) cf5 / (1 + rated).pow(8) else 0.0
+        val npv9 = if (numberOfYears >= 9) cf5 / (1 + rated).pow(9) else 0.0
+        val npv10 = if (numberOfYears >= 10) cf5 / (1 + rated).pow(10) else 0.0
 
-        val cashFlow = npv1 + npv2 + npv3 + npv4 + npv5
-        val npv = npv1 + npv2 + npv3 + npv4 + npv5 - initialInvestment
+        val cashFlow = npv1 + npv2 + npv3 + npv4 + npv5 + npv6 + npv7 + npv8 + npv9 + npv10
+        val npv = npv1 + npv2 + npv3 + npv4 + npv5 + npv6 + npv7 + npv8 + npv9 + npv10 - initialInvestment
 
         val explanation = """
             Given:

@@ -7,27 +7,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mtcdb.stem.mathtrix.MainActivity
 import com.mtcdb.stem.mathtrix.R
 import com.mtcdb.stem.mathtrix.calculator.options.AmortizationFragment
+import com.mtcdb.stem.mathtrix.calculator.options.AverageCollectionPeriodFragment
 import com.mtcdb.stem.mathtrix.calculator.options.BreakEvenFragment
 import com.mtcdb.stem.mathtrix.calculator.options.CompoundInterestFragment
+import com.mtcdb.stem.mathtrix.calculator.options.DTERFragment
+import com.mtcdb.stem.mathtrix.calculator.options.DiscountedCashFlowFragment
+import com.mtcdb.stem.mathtrix.calculator.options.EPSFragment
+import com.mtcdb.stem.mathtrix.calculator.options.GDPFragment
+import com.mtcdb.stem.mathtrix.calculator.options.InflationAdjustedReturnFragment
+import com.mtcdb.stem.mathtrix.calculator.options.InventoryTurnoverRatioFragment
 import com.mtcdb.stem.mathtrix.calculator.options.NPVFragment
+import com.mtcdb.stem.mathtrix.calculator.options.OperatingCashFlowRatioFragment
+import com.mtcdb.stem.mathtrix.calculator.options.PaybackPeriodFragment
 import com.mtcdb.stem.mathtrix.calculator.options.PercentageChangeFragment
 import com.mtcdb.stem.mathtrix.calculator.options.ProfitMarginFragment
+import com.mtcdb.stem.mathtrix.calculator.options.RAROCFragment
+import com.mtcdb.stem.mathtrix.calculator.options.ROAFragment
 import com.mtcdb.stem.mathtrix.calculator.options.ROIFragment
+import com.mtcdb.stem.mathtrix.calculator.options.SavingsGoalFragment
 import com.mtcdb.stem.mathtrix.calculator.options.SimpleInterestFragment
 import com.mtcdb.stem.mathtrix.calculator.options.WACCFragment
+import com.mtcdb.stem.mathtrix.calculator.options.WorkingCapitalFragment
 
 class CalculatorOptionsFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CalculationOptionAdapter
     private lateinit var searchView: SearchView
-    private lateinit var toolbar: Toolbar
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -38,6 +50,7 @@ class CalculatorOptionsFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_calculator_options, container, false)
 
         searchView = rootView.findViewById(R.id.calculatorSearchView)
+        val mainActivity = requireActivity() as MainActivity
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -54,10 +67,6 @@ class CalculatorOptionsFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(null)
 
         val calculationOptions = listOf(
-            CalculationOption(
-                "Simple Interest",
-                "Calculate interest on the principal amount over time."
-            ),
             CalculationOption(
                 "Compound Interest",
                 "Compute interest on the initial principal and accumulated interest."
@@ -98,6 +107,7 @@ class CalculatorOptionsFragment : Fragment() {
                 "Discounted Cash Flow (DCF)",
                 "Estimate the value of an investment based on its future cash flows."
             ),
+            /*
             CalculationOption(
                 "Earnings Per Share (EPS)",
                 "Measure a company's profitability per outstanding share of common stock."
@@ -106,7 +116,9 @@ class CalculatorOptionsFragment : Fragment() {
                 "Gross Domestic Product (GDP) Growth Rate",
                 "Determine the rate at which a country's economy is growing."
             ),
-            CalculationOption("Debt to Equity Ratio", "Assess a company's financial leverage."),
+            CalculationOption(
+                "Debt to Equity Ratio",
+                "Assess a company's financial leverage."),
             CalculationOption(
                 "Operating Cash Flow Ratio",
                 "Evaluate a company's ability to generate cash from its operations."
@@ -140,10 +152,6 @@ class CalculatorOptionsFragment : Fragment() {
                 "Measure a company's ability to meet its short-term obligations with its most liquid assets."
             ),
             CalculationOption(
-                "Loan Repayment Schedule",
-                "Generate a detailed schedule of loan repayments, including principal and interest."
-            ),
-            CalculationOption(
                 "Savings Goal Planner",
                 "Plan and track progress toward a savings goal over time."
             ),
@@ -158,11 +166,12 @@ class CalculatorOptionsFragment : Fragment() {
             CalculationOption(
                 "Depreciation Schedule",
                 "Estimate the decrease in value of an asset over time."
-            ),
+            ), */
             CalculationOption(
                 "Cost of Goods Sold (COGS)",
                 "Calculate the direct costs of producing goods sold by a company."
             ),
+            /*
             CalculationOption(
                 "Equity Multiplier",
                 "Assess the financial leverage of a company by measuring its equity multiplier."
@@ -226,7 +235,7 @@ class CalculatorOptionsFragment : Fragment() {
             CalculationOption(
                 "Rule of 72",
                 "Estimate the number of years required to double the value of an investment."
-            ),
+            ),*/
         )
 
         // Initialize the adapter
@@ -242,11 +251,24 @@ class CalculatorOptionsFragment : Fragment() {
                 "Break-Even Point" -> BreakEvenFragment()
                 "Weighted Average Cost of Capital (WACC)" -> WACCFragment()
                 "Time Value of Money (TVM)" -> TimeValueOfMoneyFragment()
+                "Discounted Cash Flow (DCF)" -> DiscountedCashFlowFragment()
+                "Earnings Per Share (EPS)" -> EPSFragment()
+                "Gross Domestic Product (GDP) Growth Rate" -> GDPFragment()
+                "Debt to Equity Ratio" -> DTERFragment()
+                "Operating Cash Flow Ratio" -> OperatingCashFlowRatioFragment()
+                "Inventory Turnover Ratio" -> InventoryTurnoverRatioFragment()
+                "Return on Assets (ROA)" -> ROAFragment()
+                "Average Collection Period" -> AverageCollectionPeriodFragment()
+                "Payback Period" -> PaybackPeriodFragment()
+                "Risk-Adjusted Return on Capital (RAROC)"-> RAROCFragment()
+                "Working Capital Ratio" -> WorkingCapitalFragment()
+                "Savings Goal Planner" -> SavingsGoalFragment()
+                "Inflation Adjusted Return" -> InflationAdjustedReturnFragment()
                 else -> null
             }
 
             if (calculatorFragment != null) {
-                parentFragmentManager.beginTransaction()
+                mainActivity.supportFragmentManager.beginTransaction()
                     .replace(R.id.calculator_container, calculatorFragment)
                     .addToBackStack(null)
                     .commit()
@@ -257,4 +279,6 @@ class CalculatorOptionsFragment : Fragment() {
 
         return rootView
     }
+
+
 }

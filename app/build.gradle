@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -51,7 +52,6 @@ dependencies {
     implementation 'androidx.preference:preference-ktx:1.2.1'
     implementation 'androidx.room:room-common:2.6.1'
     implementation 'androidx.room:room-ktx:2.6.1'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.6'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -60,16 +60,15 @@ dependencies {
     implementation 'com.github.mindinventory:minavdrawer:1.2.2'
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     implementation 'io.github.glailton.expandabletextview:expandabletextview:1.0.4'
-
-
-    //navigation controller
-    def nav_version_ktx = "2.6.7"
-    // Kotlin
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version_ktx"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version_ktx"
+    implementation 'com.github.guilhe:circular-progress-view:2.0.0'
+    implementation 'com.akexorcist:round-corner-progress-bar:2.2.1'
+    implementation 'com.github.jakob-grabner:Circle-Progress-View:1.4'
+    implementation 'com.github.antonKozyriatskyi:CircularProgressIndicator:1.3.0'
+    implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
 
     implementation 'com.google.code.gson:gson:2.10.1'
 
-
     implementation project(path:":calculatorOptions")
+    implementation fileTree(dir: 'libs', include: ['*.zip'])
+
 }

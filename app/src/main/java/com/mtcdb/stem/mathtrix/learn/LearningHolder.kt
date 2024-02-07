@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mtcdb.stem.mathtrix.R
 
-public class LearningHolder : RecyclerView.ViewHolder {
+class LearningHolder : RecyclerView.ViewHolder {
 
     private val listener : LearningListener
     private val title : TextView
@@ -13,12 +13,12 @@ public class LearningHolder : RecyclerView.ViewHolder {
 
     constructor(listener : LearningListener, view : View) : super(view) {
         this.listener = listener
-        this.title = itemView.findViewById<TextView>(R.id.text_view_title)
+        this.title = itemView.findViewById(R.id.text_view_title)
         //this.icon = itemView.findViewById<ImageView>(R.id.image_view_icon)
     }
 
     public fun bindDataToViewHolder(model : LearnModel, position : Int) {
-        title.setText(model.title)
+        title.text = model.title
         //icon.setImageResource(model.icon)
         itemView.setOnClickListener {
             listener.onClickModel(model = model, position = position)

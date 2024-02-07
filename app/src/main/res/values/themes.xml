@@ -5,5 +5,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="dialogCornerRadius">8dp</item>
         <item name="colorSurface">#F1FAFB</item>
+        <item name="colorContainer">#25D2EF</item>
+        <item name="backgroundColor">#EAF6F8</item>
     </style>
 </resources>

@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.mtcdb.stem.mathtrix.MainActivity
 import com.mtcdb.stem.mathtrix.R
 
-public class TipsFragment : Fragment() {
+class TipsFragment : Fragment() {
 
     companion object {
         public val TAG : String = TipsFragment::class.java.getSimpleName()

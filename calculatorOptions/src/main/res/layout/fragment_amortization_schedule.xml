@@ -117,7 +117,39 @@
                     android:layout_weight="2" />
         </LinearLayout>
 
-        <!-- Result and Explanation -->
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                     android:id="@+id/amortizationTable"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:stretchColumns="0,1,2,3">
+
+            <TableRow>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Period"
+                        android:padding="5dp"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Beginning Balance"
+                        android:padding="5dp"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Interest"
+                        android:padding="5dp"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Principal"
+                        android:padding="5dp"/>
+            </TableRow>
+
+            <!-- Add TableRow widgets for each period of the loan here -->
+
+        </TableLayout>
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

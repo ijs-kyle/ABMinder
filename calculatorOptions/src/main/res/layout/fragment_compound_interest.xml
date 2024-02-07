@@ -38,22 +38,17 @@
                 android:orientation="vertical"
                 >
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardElevation="4dp"
+                    android:hint="@string/principal_amount"
                     android:layout_margin="6dp"
-                    app:cardCornerRadius="32dp"
-                    app:contentPadding="4dp"
-                    app:contentPaddingLeft="16dp"
-                    app:contentPaddingRight="16dp"
                     >
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextPrincipal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/principal_amount"
                         android:inputType="numberDecimal"
                         android:importantForAutofill="no"
                         android:paddingHorizontal="6dp"
@@ -62,24 +57,19 @@
                         android:textColorHint="#757575"
                         tools:ignore="VisualLintTextFieldSize"
                         />
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardElevation="4dp"
-                    app:cardCornerRadius="32dp"
+                    android:hint="@string/rate_of_interest"
                     android:layout_margin="6dp"
-                    app:contentPadding="4dp"
-                    app:contentPaddingLeft="16dp"
-                    app:contentPaddingRight="16dp"
                     >
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextRate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/rate_of_interest"
                         android:inputType="numberDecimal"
                         android:importantForAutofill="no"
                         android:paddingHorizontal="6dp"
@@ -87,24 +77,19 @@
                         android:textColorHint="#757575"
                         tools:ignore="VisualLintTextFieldSize"
                         />
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
-                    app:cardCornerRadius="32dp"
-                    app:cardElevation="4dp"
-                    app:contentPadding="4dp"
-                    app:contentPaddingLeft="16dp"
-                    app:contentPaddingRight="16dp"
+                    android:hint="@string/time_years"
                     >
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/time_years"
                         android:inputType="numberDecimal"
                         android:paddingHorizontal="6dp"
                         android:importantForAutofill="no"
@@ -112,24 +97,19 @@
                         android:textColorHint="#757575"
                         tools:ignore="VisualLintTextFieldSize"
                         />
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
-                    app:cardCornerRadius="32dp"
-                    app:cardElevation="4dp"
-                    app:contentPadding="4dp"
-                    app:contentPaddingLeft="16dp"
-                    app:contentPaddingRight="16dp"
+                    android:hint="@string/compounding_periods_per_year"
                     >
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextCompoundingPeriods"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/compounding_periods_per_year"
                         android:inputType="numberDecimal"
                         android:paddingHorizontal="6dp"
                         android:importantForAutofill="no"
@@ -137,7 +117,7 @@
                         android:textColorHint="#757575"
                         tools:ignore="VisualLintTextFieldSize"
                         />
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout

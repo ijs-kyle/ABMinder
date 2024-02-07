@@ -1,10 +1,12 @@
 package com.mtcdb.stem.mathtrix
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -13,30 +15,40 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
+import android.window.OnBackInvokedDispatcher
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.core.view.size
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.mtcdb.stem.mathtrix.calculator.CalculatorOptionsFragment
 import com.mtcdb.stem.mathtrix.dictionary.DictionaryDatabaseHelper
 import com.mtcdb.stem.mathtrix.dictionary.DictionarySuggestionAdapter
-import com.mtcdb.stem.mathtrix.learn.LearnFragment
+import com.mtcdb.stem.mathtrix.dictionary.DictionaryViewModel
+import com.mtcdb.stem.mathtrix.dictionary.RecentSearch
+import com.mtcdb.stem.mathtrix.dictionary.RecentSearchAdapter
+import com.mtcdb.stem.mathtrix.learn.chapters.ChaptersFragment
 import com.mtcdb.stem.mathtrix.quiz.DifficultyLevel
 import com.mtcdb.stem.mathtrix.settings.SettingsActivity
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
-    public lateinit var toolbar: Toolbar
+    lateinit var toolbar: Toolbar
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var databaseHelper: DictionaryDatabaseHelper
     private lateinit var layoutCalculator: LinearLayout
-
+    private var doubleBackToExitPressedOnce = false
 
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,14 +105,30 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction()
                         .replace(
                             R.id.fragment_container,
-                            LearnFragment.newInstance(),
-                            LearnFragment::class.java.simpleName
+                            ChaptersFragment(),
+                            ChaptersFragment::class.java.simpleName
                         )
-                        .addToBackStack(LearnFragment.TAG)
+                        .addToBackStack(null)
                         .commit()
                     drawerLayout.closeDrawer(GravityCompat.START)
-                    toolbar.title = getString(R.string.learn)
+                    toolbar.title = "Learn"
                 }
+
+                /*
+                R.id.nav_item_learn -> {
+                supportFragmentManager.beginTransaction()
+                .replace(
+                R.id.fragment_container,
+                LearnFragment.newInstance(),
+                LearnFragment::class.java.simpleName
+                )
+                .addToBackStack(LearnFragment.TAG)
+                .commit()
+                drawerLayout.closeDrawer(GravityCompat.START)
+                toolbar.title = getString(R.string.learn)
+                }
+                */
+
 
                 R.id.nav_item_quiz -> {
                     val intent = Intent(this, DifficultyLevel::class.java)
@@ -110,31 +138,47 @@ class MainActivity : AppCompatActivity() {
             }
             return@setNavigationItemSelectedListener true
         }
+        navView.setCheckedItem(R.id.nav_item_dictionary)
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        drawerLayout = findViewById(R.id.drawer_layout)
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else if (supportFragmentManager.backStackEntryCount > 0) {
-            toolbar.title = getString(R.string.app_name)
-            if (CalculatorOptionsFragment().isVisible && CalculatorOptionsFragment().childFragmentManager.backStackEntryCount > 0) {
-                toolbar.title = getString(R.string.calculator)
+
+    override fun getOnBackInvokedDispatcher(): OnBackInvokedDispatcher {
+        // Get the default dispatcher from the superclass
+        val dispatcher = super.getOnBackInvokedDispatcher()
+        onBackPressedDispatcher.addCallback(this) {
+            drawerLayout = findViewById(R.id.drawer_layout)
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START)
+            } else if (supportFragmentManager.backStackEntryCount > 0) {
+                toolbar.title = getString(R.string.app_name)
+                super.onBackPressed()
+            } else {
+                toolbar.title = getString(R.string.app_name)
+                onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        if (doubleBackToExitPressedOnce) {
+                            // If the user presses back button twice within 3 seconds, exit the app
+                            finish()
+                        } else {
+                            doubleBackToExitPressedOnce = true
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Press back again to exit",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            // Reset the flag after 3 seconds
+                            Handler(mainLooper).postDelayed({
+                                doubleBackToExitPressedOnce = false
+                            }, 2000)
+                        }
+                    }
+                })
                 super.onBackPressed()
             }
-            super.onBackPressed()
-        } else {
-            toolbar.title = getString(R.string.app_name)
-            super.onBackPressed()
         }
 
-        if (CalculatorOptionsFragment().isVisible) {
-            if (CalculatorOptionsFragment().childFragmentManager.backStackEntryCount > 0) {
-                toolbar.title = getString(R.string.calculator)
-                super.onBackPressed()
-            }
-        }
+        return dispatcher
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -155,6 +199,12 @@ class MainActivity : AppCompatActivity() {
 
             R.id.action_settings -> {
                 val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+                true
+            }
+
+            R.id.action_quiz -> {
+                val intent = Intent(this, DifficultyLevel::class.java)
                 startActivity(intent)
                 true
             }
@@ -730,11 +780,6 @@ class MainActivity : AppCompatActivity() {
                         "Applying linear programming to determine the most efficient production plan that meets demand and resource constraints."
                     ),
                     Triple(
-                        "Game Theory",
-                        "Analyzing strategic interactions between players with competing interests, helping to predict behavior and develop optimal strategies in negotiations and competitive situations.",
-                        "Using game theory to model market competition and develop pricing strategies."
-                    ),
-                    Triple(
                         "Amortization",
                         "The process of allocating the cost of an asset over its useful life.",
                         "Amortizing the cost of a loan or intangible asset over time to reflect its declining value."
@@ -808,11 +853,6 @@ class MainActivity : AppCompatActivity() {
                         "Econometrics",
                         "The application of statistical methods to economic data in order to test economic theories and estimate relationships between economic variables.",
                         "An economist uses econometrics to analyze the impact of government policies on economic growth."
-                    ),
-                    Triple(
-                        "Game Theory",
-                        "The study of strategic decision-making in situations where the outcome depends on the choices of multiple players.",
-                        "Companies use game theory to develop pricing strategies and predict competitor behavior."
                     ),
                     Triple(
                         "Behavioral Finance",
@@ -1199,7 +1239,13 @@ class MainActivity : AppCompatActivity() {
                         "Trade of goods through unauthorized or unofficial channels, often operating outside traditional distribution networks.",
                         "Luxury brands may face challenges with grey markets selling counterfeit or parallel imports of their products."
                     ),
-                )
+                    Triple(
+                        "Profit",
+                        "Financial gain where revenue exceeds expenses.",
+                        "A company earned $50,000 in sales and incurred $40,000 in costs, resulting in a profit of $10,000."
+                    ),
+
+                    )
 
                 val insertQuery =
                     "INSERT INTO dictionary_terms (term, definition, example) VALUES (?, ?, ?)"
@@ -1246,6 +1292,9 @@ class DictionaryFragment : Fragment() {
     private lateinit var termDefinitionTextView: TextView
     private lateinit var termExamplesListView: TextView
     private lateinit var layoutDictionary: LinearLayout
+    private lateinit var recentSearchesRecyclerView: RecyclerView
+    private lateinit var recentSearchesAdapter: RecentSearchAdapter
+    private lateinit var viewModel: DictionaryViewModel
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -1265,15 +1314,49 @@ class DictionaryFragment : Fragment() {
         termTextView = rootView.findViewById(R.id.termTextView)
         termDefinitionTextView = rootView.findViewById(R.id.term_definition)
         termExamplesListView = rootView.findViewById(R.id.term_examples)
+        recentSearchesRecyclerView = rootView.findViewById(R.id.recent_searches_list)
+        recentSearchesRecyclerView.visibility = View.VISIBLE
+        val recent = rootView.findViewById<TextView>(R.id.recent)
+        val recentText: TextView = rootView.findViewById(R.id.recentText)
+        recentText.visibility = View.GONE
+        if (recentSearchesRecyclerView.size == 0 or -1 && recentSearchesAdapter.equals(0)) {
+            recentText.visibility = View.VISIBLE
+            recent.visibility = View.GONE
+        } else {
+            recentText.visibility = View.GONE
+            recent.visibility = View.VISIBLE
+
+        }
+
+        viewModel = ViewModelProvider(this)[DictionaryViewModel::class.java]
+
+        // Initialize and set up the RecentSearchAdapter
+        recentSearchesAdapter = RecentSearchAdapter(requireContext()) { clickedSearch ->
+            Toast.makeText(requireContext(), "Clicked: ${clickedSearch.query}", Toast.LENGTH_SHORT)
+                .show()
+        }
+        recentSearchesRecyclerView.adapter = recentSearchesAdapter
+
+        // Observe changes in recent searches
+        viewModel.recentSearches.observe(viewLifecycleOwner) { searches ->
+            recentSearchesAdapter.submitList(searches)
+        }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrEmpty()) {
+                    // Perform the search with the submitted query
+                    searchView.setQuery(query, false)
+                    searchView.clearFocus()
+                    performSearch(query)
+                }
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrEmpty()) {
                     layoutDictionary.visibility = View.GONE
+                    recentSearchesRecyclerView.visibility = View.VISIBLE
                 }
 
                 // Update the cursor in the adapter as the user types
@@ -1291,7 +1374,6 @@ class DictionaryFragment : Fragment() {
         searchView.suggestionsAdapter = null
         searchView.setOnSuggestionListener(object : SearchView.OnSuggestionListener {
             override fun onSuggestionSelect(position: Int): Boolean {
-
                 return true
             }
 
@@ -1306,6 +1388,11 @@ class DictionaryFragment : Fragment() {
                 termExamplesListView.text = example
                 searchView.clearFocus()
                 layoutDictionary.visibility = View.VISIBLE
+                recentSearchesRecyclerView.visibility = View.GONE
+
+                // Adding the recent search
+                handleRecentSearch(term, definition, example)
+
                 return true
             }
         })
@@ -1313,7 +1400,7 @@ class DictionaryFragment : Fragment() {
         return rootView
     }
 
-    fun getSuggestionsCursor(query: String?): Cursor? {
+    private fun getSuggestionsCursor(query: String?): Cursor? {
         val db = context?.let { DictionaryDatabaseHelper(it).readableDatabase }
         val selection = "term LIKE ?"
         val selectionArgs = arrayOf("$query%")
@@ -1328,5 +1415,53 @@ class DictionaryFragment : Fragment() {
             null,
             "term ASC"
         )
+    }
+
+    private fun handleRecentSearch(query: String, definition: String, example: String) {
+        val sharedPreferences =
+            requireContext().getSharedPreferences("SearchHistory", Context.MODE_PRIVATE)
+
+        // Retrieve existing search history
+        val searchHistory =
+            sharedPreferences.getStringSet("searchHistory", HashSet())?.toMutableList()
+                ?: mutableListOf()
+
+        // Add the new search
+        val newSearch = RecentSearch(query, definition, example)
+        viewModel.addRecentSearch(newSearch)
+        searchHistory.add(0, newSearch.toString()) // Convert to string for storage
+
+        // Limit the search history to 10 items
+        while (searchHistory.size > 10) {
+            searchHistory.removeAt(searchHistory.size - 1)
+        }
+
+        // Save the updated search history
+        sharedPreferences.edit().putStringSet("searchHistory", searchHistory.toSet()).apply()
+
+    }
+
+    private fun performSearch(query: String) {
+        val cursor = getSuggestionsCursor(query)
+
+        if (cursor != null && cursor.moveToFirst()) {
+            // Match found, display the definition
+            val term = cursor.getString(cursor.getColumnIndexOrThrow("term"))
+            val definition = cursor.getString(cursor.getColumnIndexOrThrow("definition"))
+            val example = cursor.getString(cursor.getColumnIndexOrThrow("example"))
+
+            termTextView.text = term
+            termDefinitionTextView.text = definition
+            termExamplesListView.text = example
+            searchView.clearFocus()
+            layoutDictionary.visibility = View.VISIBLE
+            recentSearchesRecyclerView.visibility = View.GONE
+
+            // Adding the recent search
+            handleRecentSearch(term, definition, example)
+        } else {
+            // No match found, do nothing or show a message
+            // You can add a message to inform the user that no match was found
+        }
     }
 }

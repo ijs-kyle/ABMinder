@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.mtcdb.stem.mathtrix.R
 
 class ROIFragment : Fragment() {
 
@@ -86,8 +87,9 @@ class ROIFragment : Fragment() {
         val returnAmount = returnEditText.text.toString().toDoubleOrNull() ?: 0.0
 
         val roi = ((returnAmount - initialInvestment) / initialInvestment) * 100
+        roi.toString()
 
-        resultTextView.text = roi.toString()
+        resultTextView.text = getString(R.string.rOI, roi)
     }
 
     private fun showExplanationDialog() {

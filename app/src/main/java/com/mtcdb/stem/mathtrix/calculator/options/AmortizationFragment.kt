@@ -81,7 +81,9 @@ class AmortizationFragment : Fragment() {
         val totalPayments = loanTerm * 12
         val denominator = (1 + monthlyInterestRate).pow(totalPayments) - 1
 
-        val monthlyPayment = loanAmount * monthlyInterestRate * Math.pow((1 + monthlyInterestRate), totalPayments) / denominator
+        val monthlyPayment = loanAmount * monthlyInterestRate * (1 + monthlyInterestRate).pow(
+            totalPayments
+        ) / denominator
 
         resultTextView.text = String.format("Monthly Payment: $%.2f", monthlyPayment)
     }

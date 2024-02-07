@@ -28,6 +28,7 @@ class SettingsActivity : AppCompatActivity() {
                 .commit()
         }
 
+
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         toolbar.title = "Settings"
         setSupportActionBar(toolbar)
@@ -46,7 +47,7 @@ class SettingsActivity : AppCompatActivity() {
 
     }
 
-    fun applyTheme(theme: String) {
+    private fun applyTheme(theme: String) {
         when (theme) {
             "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -86,10 +87,11 @@ class SettingsActivity : AppCompatActivity() {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
             val languagePreference = findPreference<ListPreference>(getString(R.string.pref_language_key))
-            languagePreference?.setOnPreferenceChangeListener { preference, newValue ->
+            languagePreference?.setOnPreferenceChangeListener { _, newValue ->
                 (requireActivity() as SettingsActivity).applyLanguageChange(newValue as String)
                 true
             }
+
         }
     }
 }

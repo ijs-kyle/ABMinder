@@ -23,7 +23,7 @@
     <string name="year_3">Year 3</string>
     <string name="year_4">Year 4</string>
     <string name="year_5">Year 5</string>
-    <string name="no_of_years">No. of years</string>
+    <string name="no_of_years">No. of years (max. of 10)</string>
     <string name="add_year">Add Year</string>
     <string name="ok">OK</string>
     <string name="enter">Enter</string>
@@ -53,4 +53,54 @@
     <string name="compounding_periods_per_year">Compounding Periods (per year)</string>
     <string name="time_value_of_money">Time Value Of Money</string>
     <string name="break_even">Break-even:</string>
+    <string name="dcf_result">DCF: </string>
+    <string name="enter_cash_flows">Enter cash flows (use a comma to separate cash flows)</string>
+    <string name="net_income">Net Income</string>
+    <string name="preferred_dividends">Preferred Dividends</string>
+    <string name="weighted_average_shares">Weighted Average Shares</string>
+    <string name="eps_result">Earnings Per Share: %.2f</string>
+    <string name="final_gdp">Final GDP</string>
+    <string name="initial_gdp">Initial GDP</string>
+    <string name="gdp_result">Gross Domestic Product: %.2f</string>
+    <string name="equity">Total shareholders equity</string>
+    <string name="total_debt">Total Liabilities</string>
+    <string name="dter_result">Debt/Equity Ratio: %.2f</string>
+    <string name="current_liabilities">Current liabilities</string>
+    <string name="operating_cash_flow_ratio_result">Operating Cash Flow Ratio: %.2f</string>
+    <string name="net_operating_cash_flow">Net Operating Cash Flow</string>
+    <!-- Inventory Turnover Ratio Calculator -->
+    <string name="cost_of_goods_sold">Cost of Goods Sold</string>
+    <string name="average_inventory">Average Inventory</string>
+    <string name="inventory_turnover_ratio_result">Inventory Turnover Ratio: %.2f</string>
+    <string name="average_total_assets">Average Total Assets</string>
+    <string name="roa_result">Return on Assets: %.2f%%</string>
+    <string name="annual_cash_flow">Annual Cashflow</string>
+    <string name="payback_period_result">Payback Period: %.2f</string>
+    <string name="net_credit_sales">Net Credit Sales</string>
+    <string name="average_accounts_receivable">Average Accounts Receivable</string>
+    <string name="average_collection_period_result">Average Collection Period: %.2f days</string>
+    <string name="revenues">Revenues</string>
+    <string name="costs">Costs</string>
+    <string name="expected_losses">Expected Losses</string>
+    <string name="economic_capital">Economic Capital</string>
+    <string name="raroc_result">RAROC: %.2f%%</string>
+    <!-- Working Capital Ratio Fragment Strings -->
+    <string name="current_assets">Enter Current Assets</string>
+    <string name="wc_result">Working Capital Ratio: %.2f</string>
+    <string name="savings_goal_result">To reach your goal, save %s monthly for %d months.</string>
+
+    <string name="inflation_adjusted_return_result">The inflation-adjusted return is %s.</string>
+    <string name="inflation_adjusted_return_description">
+        The Inflation-Adjusted Return calculator helps you determine the real return on your investments after accounting for inflation.
+
+        Formula:
+        Inflation-Adjusted Return = (1 + (Nominal Return / 100)) / (1 + (Inflation Rate / 100)) - 1
+
+        Example:
+        If the Nominal Return is 5% and the Inflation Rate is 2%:
+        Inflation-Adjusted Return = (1 + (5 / 100)) / (1 + (2 / 100)) - 1
+        = 0.0291 or 2.91%
+
+        Adjust the nominal return and inflation rate to see how they impact the inflation-adjusted return.
+    </string>
 </resources>

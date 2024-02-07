@@ -6,7 +6,7 @@
     <string name="navigation_drawer_open">Open Menu</string>
     <string name="navigation_drawer_close">Close Menu</string>
     <string name="calculator">Calculator</string>
-    <string name="an_innovative_business_mathematics_application">An Innovative Business Mathematics Application</string>
+    <string name="an_innovative_business_mathematics_application">Navigate Numbers with Ease.</string>
     <string name="mathtrix">MathTrix</string>
     <string name="settings">Settings</string>
     <string name="principal_amount">Principal Amount</string>
@@ -68,13 +68,13 @@
     <string name="calculating_simple_interest">Calculating simple interest:</string>
     <string name="example">Example:</string>
     <string name="assets_path">file:///android_asset/%s</string>
-    <string name="description">Welcome to MathTrix, the go-to app for Business Mathematics tailored for ABM students. MathTrix combines a powerful Business Mathematics Calculator, an extensive Business Mathematics Dictionary, interactive lessons, insightful tips, engaging quizzes, and progress tracking—all in one comprehensive application.</string>
+    <string name="description">MathTrix, the go-to app for Business Mathematics tailored for ABM students. MathTrix combines a powerful Business Mathematics Calculator, an extensive Business Mathematics Dictionary,  lessons and tips, engaging quizzes, and progress tracking—all in one comprehensive application.</string>
     <string name="get_started">Get started</string>
     <string name="welcome_to_mathtrix">MathTrix</string>
     <string name="choose_difficulty_level">Choose difficulty level</string>
-    <string name="easy">Easy</string>
-    <string name="medium">Medium</string>
-    <string name="hard">Hard</string>
+    <string name="easy">EASY</string>
+    <string name="medium">MEDIUM</string>
+    <string name="hard">HARD</string>
     <string name="quiz">Quiz</string>
     <string name="quizDescription">Choose your preferred difficulty level:\n   - Easy: Suitable for beginners or those looking for a foundational understanding.\n   - Medium: A moderate challenge for individuals with a basic understanding of business mathematics.\n   - Hard: Designed for advanced users seeking to test their expertise in complex business math scenarios.</string>
     <string name="instructions">Instructions:</string>
@@ -87,5 +87,20 @@
     <string name="time_in_years">Time (in years)</string>
     <string name="simple_interestz">Simple Interest:\n %1$s</string>
     <string name="finish">Finish</string>
-    <string name="quiz_completed">Quiz Completed!</string>
+    <string name="quiz_completed">Result</string>
+    <string name="press_again">Press back again to exit</string>
+    <string name="arrow">arrow</string>
+    <string name="payback_period_result">Payback Period: %.2f</string>
+
+    <!-- Quiz Result Messages -->
+    <string name="quiz_result_perfect_score">Congratulations! You got a perfect score! 🎉</string>
+    <string name="quiz_result_pass">Congratulations! You passed the quiz! 🎊</string>
+    <string name="quiz_result_fail">Sorry, you didn\'t pass the quiz. Try again!</string>
+    <string name="_10">%1$s/10</string>
+    <string name="question">Question</string>
+    <string name="profitmar">Profit Margin: %.2f</string>
+    <string name="rOI">%1$s%</string>
+    <string name="exa">Example: %1$s</string>
+    <string name="recent_searches">Recent searches…</string>
+    <string name="score">score</string>
 </resources>

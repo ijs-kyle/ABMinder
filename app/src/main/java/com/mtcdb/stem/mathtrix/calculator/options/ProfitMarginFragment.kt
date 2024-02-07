@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.mtcdb.stem.mathtrix.R
 
 class ProfitMarginFragment : Fragment() {
 
@@ -75,8 +76,9 @@ class ProfitMarginFragment : Fragment() {
         val sellingPrice = sellingPriceEditText.text.toString().toDoubleOrNull() ?: 0.0
 
         val profitMargin = ((sellingPrice - costPrice) / sellingPrice) * 100
+        profitMargin.toInt()
 
-        resultTextView.text = profitMargin.toString()
+        resultTextView.text = getString(R.string.profitmar, profitMargin)
     }
 
     private fun showExplanationDialog() {

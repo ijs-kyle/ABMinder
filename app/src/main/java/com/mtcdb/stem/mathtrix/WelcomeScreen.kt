@@ -1,5 +1,6 @@
 package com.mtcdb.stem.mathtrix
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -8,15 +9,19 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 
 class WelcomeActivity : AppCompatActivity() {
 
     private lateinit var startButton: Button
 
+    @SuppressLint("InflateParams")
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
+
         val layout = layoutInflater.inflate(R.layout.activity_welcome, null)
         layout.visibility = View.VISIBLE
 
@@ -57,6 +62,7 @@ class WelcomeActivity : AppCompatActivity() {
         finish()
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
     private fun setFullScreen() {
         // For devices with Android 12 (API level 31) and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -67,9 +73,13 @@ class WelcomeActivity : AppCompatActivity() {
         } else {
             // For devices with Android versions below 12
             window.decorView.apply {
-                systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN
-                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+                windowInsetsController?.apply {
+                    hide(WindowInsets.Type.statusBars())
+                }
+
+                    //(View.SYSTEM_UI_FLAG_FULLSCREEN
+                     //   or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                     //  or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
             }
         }
     }

@@ -1,0 +1,88 @@
+package com.mtcdb.stem.mathtrix.quiz
+
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.graphics.Color
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import antonkozyriatskyi.circularprogressindicator.CircularProgressIndicator
+import com.mtcdb.stem.mathtrix.R
+
+@Suppress("DEPRECATION")
+class QuizResultFragment : Fragment() {
+
+    private lateinit var finishButton: Button
+    private lateinit var difficulty: String
+
+    @SuppressLint("MissingInflatedId")
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_quiz_result, container, false)
+
+        // Retrieve the quiz questions and score from arguments
+        val questions =
+            arguments?.getParcelableArrayList<QuizEntity>("quizQuestions")
+        val score = arguments?.getInt("quizScore") ?: 0
+        difficulty = arguments?.getString("difficulty").toString()
+
+        val progressBar: CircularProgressIndicator = view.findViewById(R.id.progressBar2)
+        val difficultyTextView: TextView = view.findViewById(R.id.difficulty)
+
+        difficultyTextView.text = difficulty
+        questions?.size?.let { progressBar.setProgress(score.toDouble(), it.toDouble()) }
+        progressBar.progressColor = Color.GREEN
+        progressBar.progressBackgroundColor = Color.RED
+        progressBar.setProgressStrokeWidthDp(10)
+        progressBar.setProgressBackgroundStrokeWidthDp(10)
+        progressBar.setShouldDrawDot(false)
+        progressBar.setTextSizeSp(32)
+
+        val belowThresholdColor = ContextCompat.getColor(requireActivity(), R.color.Red)
+        val aboveThresholdColor = ContextCompat.getColor(requireActivity(), R.color.green)
+        val thresholdScore = 7
+
+        if (score >= thresholdScore) {
+            progressBar.progressColor = aboveThresholdColor
+            progressBar.progressBackgroundColor = ContextCompat.getColor(requireActivity(), R.color.lightGreen)
+            progressBar.textColor = aboveThresholdColor
+        } else {
+            progressBar.progressColor = belowThresholdColor
+            progressBar.textColor = belowThresholdColor
+            progressBar.progressBackgroundColor =
+                ContextCompat.getColor(requireActivity(), R.color.lightRed)
+        }
+
+        val timeTakenTextView: TextView = view.findViewById(R.id.timeTakenTextView)
+
+        val timeTaken = arguments?.getString("timeTaken")
+        timeTakenTextView.text = timeTaken
+
+        finishButton = view.findViewById(R.id.finishButton)
+        finishButton.setOnClickListener {
+            val intent = Intent(requireActivity(), DifficultyLevel::class.java)
+            startActivity(intent)
+        }
+
+        val resultMessage = when {
+            score == questions?.size -> getString(R.string.quiz_result_perfect_score)
+            score >= 7 -> getString(R.string.quiz_result_pass)
+            score == 1 -> "At least you got 1! 💪"
+            else -> getString(R.string.quiz_result_fail)
+        }
+
+        // Display the result message in a TextView
+        val resultTextView: TextView = view.findViewById(R.id.resultTextView)
+        resultTextView.text = resultMessage
+
+        return view
+    }
+}

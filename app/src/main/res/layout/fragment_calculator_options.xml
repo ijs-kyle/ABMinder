@@ -10,29 +10,13 @@
         tools:context=".calculator.CalculatorOptionsFragment"
         >
 
-
-    <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
-        <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                app:title="@string/calculator"
-                app:titleCentered="true"
-                android:layout_weight="2"
-                android:background="@color/colorPrimary"
-                />
-    </com.google.android.material.appbar.AppBarLayout>
-
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="20dp"
-            android:layout_marginHorizontal="6dp"
-            android:layout_marginVertical="8dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="12dp"
             >
 
         <androidx.appcompat.widget.SearchView
@@ -41,7 +25,7 @@
                 android:paddingHorizontal="6dp"
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="12dp"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 app:iconifiedByDefault="false"
                 app:queryHint="Search calculators..."
                 />
