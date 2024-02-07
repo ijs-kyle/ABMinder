@@ -1,9 +1,12 @@
 package com.mtcdb.stem.mathtrix.learn.chapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.RecyclerView
 import com.mtcdb.stem.mathtrix.R
 
@@ -12,8 +15,16 @@ class LessonsAdapter(
     private val onLessonSelected: (Lesson) -> Unit
 ) : RecyclerView.Adapter<LessonsAdapter.LessonViewHolder>() {
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LessonViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_lesson, parent, false)
+
+        val arrow = view.findViewById<ImageView>(R.id.image_view_arrow)
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+            arrow.setColorFilter(R.color.black)
+        } else {
+            arrow.setColorFilter(R.color.white)
+        }
         return LessonViewHolder(view)
     }
 

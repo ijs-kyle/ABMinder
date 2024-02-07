@@ -41,7 +41,7 @@ class CalculatorOptionsFragment : Fragment() {
     private lateinit var adapter: CalculationOptionAdapter
     private lateinit var searchView: SearchView
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId", "InflateParams")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

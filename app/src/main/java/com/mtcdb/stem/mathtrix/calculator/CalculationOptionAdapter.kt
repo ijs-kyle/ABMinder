@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.RecyclerView
 import com.mtcdb.stem.mathtrix.R
 import java.util.Locale
@@ -53,6 +55,13 @@ class CalculationOptionAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_calculation_option, parent, false)
+        val arrow = itemView.findViewById<ImageView>(R.id.arrow)
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+            arrow.setColorFilter(R.color.black)
+        } else {
+            arrow.setColorFilter(R.color.white)
+        }
+
         return ViewHolder(itemView)
     }
 

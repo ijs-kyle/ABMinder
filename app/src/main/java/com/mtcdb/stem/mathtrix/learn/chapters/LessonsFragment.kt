@@ -67,6 +67,7 @@ class LessonsFragment : Fragment() {
                 Lesson("Multiplication and Division of Decimals", "muldiv_decimals.html"),
                 Lesson("Percentage", "percent.html"),
             )
+
             "Ratio and Proportion" -> listOf(
                 Lesson("Ratio and Proportion", "ratio.html"),
                 Lesson("Formulating and Solving Problems", "formulating_ratio.html"),
@@ -90,7 +91,7 @@ class LessonsFragment : Fragment() {
                 Lesson("Overtime and E-spreadsheet", "overtime_spreadsheet.html"),
                 Lesson("Taxation", "taxation.html"),
 
-            )
+                )
 
             "Presentation and Analysis of Business Data" -> listOf(
                 Lesson("Business Data and Forms", "business_data_forms.html"),
