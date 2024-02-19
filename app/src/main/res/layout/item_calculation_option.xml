@@ -41,13 +41,6 @@
                         android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
                         />
 
-                <com.google.android.material.divider.MaterialDivider
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginVertical="4dp"
-                        app:dividerColor="@android:color/darker_gray"
-                        />
-
                 <TextView
                         android:id="@+id/tVCalculationOptionDescription"
                         android:layout_width="wrap_content"

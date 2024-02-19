@@ -13,13 +13,13 @@ import com.mtcdb.stem.mathtrix.R
 class TipsFragment : Fragment() {
 
     companion object {
-        public val TAG : String = TipsFragment::class.java.getSimpleName()
-        public val MODEL : String = "LearningModel"
+        val TAG : String = TipsFragment::class.java.getSimpleName()
+        val MODEL : String = "LearningModel"
 
-        public fun newInstance(model : LearnModel) : TipsFragment {
-            val bundle : Bundle = Bundle()
+        fun newInstance(model : LearnModel) : TipsFragment {
+            val bundle = Bundle()
             bundle.putSerializable(MODEL, model)
-            val fragment : TipsFragment = TipsFragment()
+            val fragment = TipsFragment()
             fragment.setArguments(bundle)
             return fragment
         }

@@ -1,5 +1,6 @@
 package com.mtcdb.stem.mathtrix.learn.chapters
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,7 @@ class WebViewFragment : Fragment() {
 
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,10 +38,11 @@ class WebViewFragment : Fragment() {
 
         // Initialize WebView
         val webView: WebView = view.findViewById(R.id.webView)
+        webView.settings.javaScriptEnabled = true
 
         // Load HTML content from assets based on selectedChapter and selectedLesson
         val selectedLesson = arguments?.getParcelable<Lesson>(ARG_SELECTED_LESSON)
-        val htmlFileName = selectedLesson?.htmlFileName
+        val htmlFileName = selectedLesson?.html
 
         if (htmlFileName != null) {
             try {

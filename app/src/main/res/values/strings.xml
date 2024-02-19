@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MathTrix</string>
+    <string name="app_name">ABMinder</string>
     <string name="search_terms_here">Search terms here…</string>
     <string name="definitions">Definition</string>
     <string name="examples">Example</string>
@@ -12,7 +12,7 @@
     <string name="principal_amount">Principal Amount</string>
     <string name="rate_of_interest">Rate of Interest (%)</string>
     <string name="time_years">Time (years)</string>
-    <string name="calculate">Calculate</string> ty
+    <string name="calculate">Calculate</string>
     <string name="simple_interest_result">Result</string>
     <string name="search">Search</string>
     <string name="business_calculator">Business Calculator</string>
@@ -104,4 +104,5 @@
     <string name="exa">Example: %1$s</string>
     <string name="recent_searches">Recent searches…</string>
     <string name="score">score</string>
+    <string name="search_topics_here">Search topics here...</string>
 </resources>

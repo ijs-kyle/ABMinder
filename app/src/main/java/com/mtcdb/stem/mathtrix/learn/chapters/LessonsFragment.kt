@@ -56,8 +56,12 @@ class LessonsFragment : Fragment() {
         transaction.commit()
     }
 
+
     private fun getLessonsForChapter(chapter: String): List<Lesson> {
         return when (chapter) {
+
+            //BUSINESS MATHEMATICS
+
             "Fundamental Operations on Fractions, Decimals, and Percentage" -> listOf(
                 Lesson("Fundamental Operations", "fundamental_operations.html"),
                 Lesson("Addition and Subtraction of Fractions", "addition_subtraction.html"),
@@ -81,24 +85,77 @@ class LessonsFragment : Fragment() {
                 Lesson("Mark Up and Profit Margin", "lesson_3.3.html"),
                 Lesson("Mark On", "mark_on.html"),
                 Lesson("Mark Down", "mark_down.html"),
-                Lesson("Commissions and Interest", "commissions_interest.html"),
+                Lesson("Single Trade Discounts and Discount Series", "trade_discount.html"),
+                Lesson("Simple Interest", "simple_interest.html"),
+                Lesson("Compound Interest", "compound_interest.html"),
             )
 
             "Salaries and Wages" -> listOf(
                 Lesson("Salaries and Wages", "salaries_wages.html"),
-                Lesson("Computing Gross and Net Earnings", "computing_earnings.html"),
                 Lesson("Benefits and Deductions", "benefits_deductions.html"),
-                Lesson("Overtime and E-spreadsheet", "overtime_spreadsheet.html"),
-                Lesson("Taxation", "taxation.html"),
-
-                )
+                Lesson("Computing Gross and Net Earnings", "computing_earnings.html"),
+                Lesson("Commissions", "commissions.html"),
+            )
 
             "Presentation and Analysis of Business Data" -> listOf(
-                Lesson("Business Data and Forms", "business_data_forms.html"),
-                Lesson("Graphs, Charts, and Tables", "graphs_charts_tables.html"),
-                Lesson("Analysis and Interpretation", "analysis_interpretation.html"),
-                Lesson("Software Applications", "software_applications.html"),
+                Lesson("Business Data", "business_data_forms.html"),
+                Lesson("Levels of Measurement", "measurement_levels.html"),
+                Lesson("Measures of Central Tendency", "central_tendency.html"),
+                Lesson("Presentations and Analysis of Data", "presentations_analysis.html"),
             )
+
+            //BUSINESS FINANCE
+
+            "Introduction to Business and Finance" -> listOf(
+                Lesson("Business Finance", "business_finance.html"),
+                Lesson("Financial Management", "financial_management.html"),
+            )
+
+            "Financial Statement Preparation, Analysis, and Interpretation" -> listOf(
+                Lesson("Accounting", "accounting.html"),
+                Lesson("Liquidity", "liquidity.html"),
+                Lesson("Profitability", "profitability.html"),
+                Lesson("Efficiency", "efficiency.html"),
+                Lesson("Financial Leverage", "financial_leverage.html"),
+                Lesson("Case Analysis", "case_analysis.html"),
+                Lesson("Horizontal and Vertical Analysis", "hover_analysis.html"),
+            )
+
+            "Financial Planning Tools and Concepts" -> listOf(
+                Lesson("Planning", "planning.html"),
+                Lesson("Event Planning", "event_planning.html"),
+                Lesson("Budgeting", "budgeting.html"),
+                Lesson("Working Capital Assets", "working_capital_assets.html"),
+                Lesson("Holding Cash", "holding_cash.html"),
+            )
+
+            "Sources and Uses of Short-Term and Long-Term Funds" -> listOf(
+                Lesson("Financing", "financing.html"),
+                Lesson("Short-Term and Long-Term Financing", "short_long_financing.html"),
+                Lesson("Loans", "loans.html"),
+            )
+
+            "Long Term Financial Concepts" -> listOf(
+                Lesson("Interest", "interest.html"),
+                Lesson("Future Value and Present Value", "values.html"),
+                Lesson("Annuity", "annuity.html"),
+                Lesson("Risk and Return Trade-off", "risk_and_return.html"),
+                Lesson("Loan Amortization", "loan_amortization.html"),
+            )
+
+            "Investments" -> listOf(
+                Lesson("Investments", "investments.html"),
+                Lesson("Risk", "risk.html"),
+            )
+
+            // FABM 1
+            "Introduction to Accounting" -> listOf()
+            "Branches of Accounting" -> listOf()
+            "Users of Accounting Information" -> listOf()
+            "Forms of Business Organization" -> listOf()
+            "Types of Business According to Activities" -> listOf()
+            "Accounting Concepts and Principles" -> listOf()
+            "The Accounting Equation" -> listOf()
 
             else -> emptyList()
         }
@@ -107,6 +164,6 @@ class LessonsFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         val mainActivity = requireActivity() as MainActivity
-        mainActivity.toolbar.title = "Learn"
+        mainActivity.toolbar.title = selectedChapter
     }
 }

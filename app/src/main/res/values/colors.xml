@@ -20,5 +20,7 @@
     <color name="lightRed">#FF9999</color>
     <color name="Red">#D60404</color>
 
+    <color name="item">#94EBF6</color>
+
 
 </resources>
