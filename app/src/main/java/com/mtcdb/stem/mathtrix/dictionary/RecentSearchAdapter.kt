@@ -12,7 +12,8 @@ import com.mtcdb.stem.mathtrix.R
 
 class RecentSearchAdapter(
     val context: Context,
-    private val onItemClick: (RecentSearch) -> Unit
+    private val onItemClick: (RecentSearch) -> Unit,
+    private val onItemLongClick: (Int) -> Unit
 ) : ListAdapter<RecentSearch, RecentSearchAdapter.RecentSearchViewHolder>(RecentSearchDiffCallback()) {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
@@ -29,7 +30,8 @@ class RecentSearchAdapter(
 
     inner class RecentSearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val termTextView: TextView = itemView.findViewById(R.id.recentSearchTerm)
-        private val definitionTextView: TextView = itemView.findViewById(R.id.recentSearchDefinition)
+        private val definitionTextView: TextView =
+            itemView.findViewById(R.id.recentSearchDefinition)
         private val exampleTextView: TextView = itemView.findViewById(R.id.recentSearchExample)
 
         fun bind(search: RecentSearch) {
@@ -39,6 +41,11 @@ class RecentSearchAdapter(
 
             itemView.setOnClickListener {
                 onItemClick(search)
+            }
+
+            itemView.setOnLongClickListener {
+                onItemLongClick(adapterPosition)
+                true
             }
         }
     }

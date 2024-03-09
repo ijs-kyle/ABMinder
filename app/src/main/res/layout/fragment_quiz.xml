@@ -14,19 +14,58 @@
             android:orientation="vertical"
             >
 
-        <TextView
-                android:id="@+id/timerTextView"
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:gravity="center"
-                android:textSize="22sp"
-                android:layout_height="40dp"
-                android:textColor="@color/incorrectOptionColor"
-                />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp"
+                >
+
+
+            <TextView
+                    android:id="@+id/tv_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/question"
+                    android:background="@drawable/delected_option"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginEnd="4dp"
+                    android:layout_gravity="bottom"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    />
+
+            <TextView
+                    android:id="@+id/tv_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="18sp"
+                    android:gravity="start|center_vertical"
+                    android:layout_weight="1"
+                    android:textColor="@android:color/darker_gray"
+                    android:text="@string/question"
+                    />
+
+            <TextView
+                    android:id="@+id/timerTextView"
+                    android:layout_width="0dp"
+                    android:gravity="end"
+                    android:textSize="20sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/incorrectOptionColor"
+                    />
+
+        </LinearLayout>
 
         <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/timerProgress"
                 android:layout_width="match_parent"
-                android:layout_marginVertical="2dp"
+                android:layout_marginTop="6dp"
                 android:layout_height="12dp"
                 app:rcMax="300"
                 app:rcProgressColor="@color/colorPrimary"
@@ -35,83 +74,29 @@
                 app:rcAnimationSpeedScale="1"
                 />
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:baselineAligned="false"
-                android:gravity="bottom"
-                android:layout_marginTop="8dp"
-                >
-
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    >
-
-                <TextView
-                        android:id="@+id/tv_progress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/question"
-                        android:background="@drawable/delected_option"
-                        android:textSize="20sp"
-                        android:gravity="center"
-                        android:padding="6dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_marginEnd="4dp"
-                        android:layout_gravity="bottom"
-                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                        />
-
-                <TextView
-                        android:id="@+id/tv_questions"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:layout_gravity="bottom"
-                        android:gravity="center_horizontal"
-                        android:padding="4dp"
-                        android:text="@string/question"
-                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                        />
-            </LinearLayout>
-        </LinearLayout>
-
         <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginVertical="8dp"
                 />
 
-        <androidx.cardview.widget.CardView
+
+        <TextView
+                android:id="@+id/questionTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="4dp"
-                android:layout_marginHorizontal="2dp"
-                app:cardCornerRadius="10dp"
-                >
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textSize="20sp"
+                android:layout_marginVertical="12dp"
+                />
 
-            <TextView
-                    android:id="@+id/questionTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textSize="18sp"
-                    android:layout_margin="12dp"
-                    />
-        </androidx.cardview.widget.CardView>
 
         <RadioGroup
                 android:id="@+id/optionsRadioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="18dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 >

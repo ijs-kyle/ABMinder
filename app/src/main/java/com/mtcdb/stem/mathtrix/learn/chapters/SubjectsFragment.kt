@@ -20,7 +20,6 @@ class SubjectsFragment : Fragment() {
         "Business Mathematics",
         "Business Finance",
         "Fundamentals of ABM I",
-        "Fundamentals of ABM II",
         "Applied Economics"
     )
 

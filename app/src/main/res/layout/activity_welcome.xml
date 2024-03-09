@@ -12,8 +12,8 @@
     <ImageView
             android:id="@+id/welcomeImage"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/app_icon_modified"
+            android:layout_height="280dp"
+            android:src="@drawable/new_icon_modified"
             android:contentDescription="@string/mathtrix"
             android:layout_centerInParent="true"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -27,16 +27,17 @@
             android:id="@+id/welcomeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/welcome_to_mathtrix"
+            android:text="@string/app_name"
             android:textSize="28sp"
             android:fontFamily="@font/roboto_black"
             android:layout_below="@id/welcomeImage"
             android:layout_centerHorizontal="true"
             app:layout_constraintBottom_toTopOf="@+id/startButton"
             app:layout_constraintTop_toBottomOf="@+id/welcomeImage"
-            app:layout_constraintVertical_bias="0.110000014"
+            app:layout_constraintVertical_bias="0.058"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             />
 
     <TextView

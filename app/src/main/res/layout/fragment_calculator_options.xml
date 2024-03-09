@@ -22,10 +22,8 @@
         <androidx.appcompat.widget.SearchView
                 android:id="@+id/calculatorSearchView"
                 android:layout_width="match_parent"
-                android:paddingHorizontal="6dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="12dp"
                 android:layout_height="40dp"
+                app:queryBackground="@null"
                 app:iconifiedByDefault="false"
                 app:queryHint="Search calculators..."
                 />

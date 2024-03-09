@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import androidx.fragment.app.Fragment
+import com.mtcdb.stem.mathtrix.MainActivity
 import com.mtcdb.stem.mathtrix.R
 import java.io.IOException
 import java.nio.charset.Charset
@@ -29,6 +30,9 @@ class WebViewFragment : Fragment() {
 
     }
 
+    private lateinit var mainActivity: MainActivity
+    private lateinit var selectedChapter: String
+
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +43,9 @@ class WebViewFragment : Fragment() {
         // Initialize WebView
         val webView: WebView = view.findViewById(R.id.webView)
         webView.settings.javaScriptEnabled = true
+
+        mainActivity = (activity as? MainActivity)!!
+        selectedChapter = arguments?.getString(ARG_SELECTED_CHAPTER) ?: ""
 
         // Load HTML content from assets based on selectedChapter and selectedLesson
         val selectedLesson = arguments?.getParcelable<Lesson>(ARG_SELECTED_LESSON)
@@ -60,5 +67,10 @@ class WebViewFragment : Fragment() {
         }
 
         return view
+    }
+
+    override fun onDestroy() {
+        mainActivity.toolbar.title = selectedChapter
+        super.onDestroy()
     }
 }

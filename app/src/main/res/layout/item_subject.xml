@@ -12,6 +12,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="12dp"
             android:layout_margin="4dp"
+            app:cardElevation="@dimen/card_elevation"
             >
 
         <LinearLayout
@@ -20,6 +21,7 @@
                 android:orientation="horizontal"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="4dp"
+                android:baselineAligned="false"
                 >
 
             <LinearLayout
@@ -33,10 +35,11 @@
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
-                        android:src="@drawable/reading"
+                        android:src="@drawable/books"
                         android:paddingVertical="8dp"
                         android:layout_gravity="center_vertical"
                         android:id="@+id/imageView2"
+                        android:contentDescription="@string/books"
                         />
             </LinearLayout>
 
@@ -54,7 +57,7 @@
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         android:text="@string/medium"
                         android:textStyle="bold"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="10dp"
                         />
             </LinearLayout>
 
@@ -71,6 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/arrow_forward"
+                        android:contentDescription="@string/learn"
                         />
             </LinearLayout>
         </LinearLayout>

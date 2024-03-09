@@ -14,21 +14,25 @@ class LessonsFragment : Fragment() {
 
     companion object {
         private const val ARG_SELECTED_CHAPTER = "selectedChapter"
+        private const val ARG_SELECTED_SUBJECT = "selectedSubject"
 
-        fun newInstance(selectedChapter: String): LessonsFragment {
+        fun newInstance(selectedChapter: String, selectedSubject: String): LessonsFragment {
             val fragment = LessonsFragment()
             val args = Bundle()
             args.putString(ARG_SELECTED_CHAPTER, selectedChapter)
+            args.putString(ARG_SELECTED_SUBJECT, selectedSubject)
             fragment.arguments = args
             return fragment
         }
     }
 
     private lateinit var selectedChapter: String
+    private lateinit var selectedSubject: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         selectedChapter = arguments?.getString(ARG_SELECTED_CHAPTER) ?: ""
+        selectedSubject = arguments?.getString(ARG_SELECTED_SUBJECT) ?: ""
     }
 
     override fun onCreateView(
@@ -54,6 +58,8 @@ class LessonsFragment : Fragment() {
         )
         transaction.addToBackStack(null)
         transaction.commit()
+        val mainActivity = requireActivity() as MainActivity
+        mainActivity.toolbar.title = lesson.name
     }
 
 
@@ -149,13 +155,92 @@ class LessonsFragment : Fragment() {
             )
 
             // FABM 1
-            "Introduction to Accounting" -> listOf()
-            "Branches of Accounting" -> listOf()
-            "Users of Accounting Information" -> listOf()
-            "Forms of Business Organization" -> listOf()
-            "Types of Business According to Activities" -> listOf()
-            "Accounting Concepts and Principles" -> listOf()
-            "The Accounting Equation" -> listOf()
+            "Introduction to Accounting" -> listOf(
+                Lesson("Introduction to Accounting", "introduction_accounting.html"),
+                Lesson("Why Accounting is Important", "why_accounting_important.html"),
+                Lesson("Nature of Accounting", "nature_accounting.html"),
+            )
+
+            "Branches of Accounting" -> listOf(
+                Lesson("What are Accounting Branches?", "accounting_branches.html"),
+                Lesson("Branches of Accounting", "branches_accounting.html"),
+            )
+
+            "Users of Accounting Information" -> listOf(
+                Lesson("Accounting Information", "accounting_information.html"),
+                Lesson("Internal Users of Accounting", "internal_users_accounting.html"),
+                Lesson("External Users of Accounting", "external_users_accounting.html"),
+            )
+
+            "Forms of Business Organization" -> listOf(
+                Lesson("Business Organization", "business_organization.html"),
+                Lesson("Sole Proprietorship", "sole_proprietorship.html"),
+                Lesson("Partnership", "partnership.html"),
+                Lesson("Corporation", "corporation.html"),
+                Lesson("Cooperative", "cooperative.html"),
+            )
+
+            "Types of Business According to Activities" -> listOf(
+                Lesson("Service Companies", "service_companies.html"),
+                Lesson("Merchandising Companies", "merchandising_companies.html"),
+                Lesson("Manufacturing Companies", "manufacturing_companies.html"),
+            )
+
+            "Accounting Concepts and Principles" -> listOf(
+                Lesson("Accrual Accounting", "accrual_accounting.html"),
+                Lesson("Judgement and Estimates", "judgement_estimates.html"),
+                Lesson("Prudence", "prudence.html"),
+                Lesson("Substance Over Form", "substance_over_form.html"),
+                Lesson("Going Concerns", "going_concerns.html"),
+                Lesson("Time Period Assumption", "time_period_assumption.html"),
+                Lesson(
+                    "Generally Accepted Accounting Principles (GAAP)",
+                    "generally_accepted_accounting_principles.html"
+                ),
+                Lesson(
+                    "International Financial Reporting Standards (IFRS)",
+                    "international_financial_reporting_standards.html"
+                ),
+                Lesson(
+                    "Financial and Sustainability Reporting Standards Council (FSRSC)",
+                    "financial_sustainability_reporting_standards_council.html"
+                ),
+            )
+
+            "The Accounting Equation" -> listOf(
+                Lesson("Statement of Assets, Liabilities, and Net Worth (SALN)", "saln.html"),
+                Lesson("Accounting Equation", "accounting_equation.html"),
+                Lesson("Elements of Accounting Equation", "elements_accounting_equation.html"),
+                Lesson("", ""),
+            )
+
+            //APPLIED ECONOMICS
+            "Introduction to Economics" -> listOf(
+                Lesson("Introduction to Economics", "applied_economics.html"),
+                Lesson("Economic Development", "economic_development.html"),
+                Lesson("Economic History", "economic_history.html"),
+                Lesson("GDP & GNP", "gdp_gnp.html"),
+            )
+
+            "Application of Demand" -> listOf(
+                Lesson(
+                    "Basic Principle of Demand and Supply",
+                    "basic_principle_demand_supply.html"
+                ),
+                Lesson(
+                    "Market/Economic Equilibrium",
+                    "market_economic_equilibrium.html"
+                ),
+                Lesson("Equilibrium Price", "equilibrium_price.html"),
+                Lesson("Price Elasticity of Demand", "elasticity_demand_supply.html"),
+                Lesson("Income Elasticity of Demand", "income_elasticity_demand.html"),
+                Lesson("Cross Elasticity of Demand", "cross_elasticity_demand.html"),
+                Lesson("Market Structures", "market_structures.html"),
+                Lesson("Perfect Competition", "perfect_competition.html"),
+                Lesson("Monopolistic Competition", "monopolistic_competition.html"),
+                Lesson("Oligopoly", "oligopoly.html"),
+                Lesson("", ""),
+            )
 
             else -> emptyList()
         }
@@ -164,6 +249,6 @@ class LessonsFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         val mainActivity = requireActivity() as MainActivity
-        mainActivity.toolbar.title = selectedChapter
+        mainActivity.toolbar.title = selectedSubject
     }
 }

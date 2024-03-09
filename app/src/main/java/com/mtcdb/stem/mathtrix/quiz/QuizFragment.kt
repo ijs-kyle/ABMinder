@@ -40,12 +40,6 @@ class QuizFragment : Fragment() {
     private var questionsAnswered = 0
     private var quizStartTimeMillis: Long = 0
     private lateinit var quizProgress: QuizProgress
-    private lateinit var totalQuestionsAnsweredTextView: TextView
-    private lateinit var totalCorrectTextView: TextView
-    private lateinit var totalWrongTextView: TextView
-    private lateinit var easyQuestionsAnsweredTextView: TextView
-    private lateinit var mediumQuestionsAnsweredTextView: TextView
-    private lateinit var hardQuestionsAnsweredTextView: TextView
 
 
     @SuppressLint("MissingInflatedId")
@@ -60,20 +54,6 @@ class QuizFragment : Fragment() {
         optionsRadioGroup = view.findViewById(R.id.optionsRadioGroup)
         timerProgressBar = view.findViewById(R.id.timerProgress)
         tVQuestions = view.findViewById(R.id.tv_questions)
-
-        val progressView = layoutInflater.inflate(R.layout.activity_difficulty_level, null, true)
-
-        // Initialize your TextViews
-        totalQuestionsAnsweredTextView =
-            progressView.findViewById(R.id.totalQuestionsAnsweredTextView)
-        totalCorrectTextView = progressView.findViewById(R.id.totalCorrectTextView)
-        totalWrongTextView = progressView.findViewById(R.id.totalWrongTextView)
-        easyQuestionsAnsweredTextView =
-            progressView.findViewById(R.id.easyQuestionsAnsweredTextView)
-        mediumQuestionsAnsweredTextView =
-            progressView.findViewById(R.id.mediumQuestionsAnsweredTextView)
-        hardQuestionsAnsweredTextView =
-            progressView.findViewById(R.id.hardQuestionsAnsweredTextView)
 
         // Display the first question
         fetchQuestions()
@@ -216,7 +196,6 @@ class QuizFragment : Fragment() {
                     questions.add(quizEntity)
                 } else {
                     // Handle the case where one or more columns are not found
-                    // You can log an error or add your custom logic here
                 }
             } while (cursor.moveToNext())
             questions.shuffle()
@@ -225,8 +204,7 @@ class QuizFragment : Fragment() {
             displayQuestion()
             updateQuestionNumber()
         } else {
-            // Handle the case where there are no questions
-            // You can add your logic here
+            // Handle the case where there are no questions in the cursor
         }
         updateQuestionNumber()
         cursor.close()
@@ -239,13 +217,6 @@ class QuizFragment : Fragment() {
                 questions[currentQuestionIndex].selectedAnswerIndex = selectedOptionIndex
 
                 val correctAnswerIndex = questions[currentQuestionIndex].correctAnswerIndex
-                // Determine the difficulty level
-                val difficultyLevel = when (this.arguments?.getString("difficultyLevel")) {
-                    "Easy" -> "Easy"
-                    "Medium" -> "Medium"
-                    "Hard" -> "Hard"
-                    else -> "Easy"
-                }// Default to Easy if difficulty level is not recognized
 
                 if (selectedOptionIndex == correctAnswerIndex) {
                     // Correct answer
@@ -280,69 +251,6 @@ class QuizFragment : Fragment() {
             Toast.makeText(context, "Please select an option.", Toast.LENGTH_SHORT).show()
         }
     }
-
-    fun updateProgressTracker(
-        isCorrect: Boolean,
-        difficultyLevel: String,
-        quizProgress: QuizProgress
-    ) {
-        // Update progress directly in the QuizFragment
-
-        quizProgress.totalQuestionsAnswered++
-        if (isCorrect) {
-            quizProgress.totalCorrect++
-        } else {
-            quizProgress.totalWrong++
-        }
-
-        when (difficultyLevel) {
-            "Easy" -> quizProgress.easyQuestionsAnswered++
-            "Medium" -> quizProgress.mediumQuestionsAnswered++
-            "Hard" -> quizProgress.hardQuestionsAnswered++
-        }
-
-        // Update TextViews or UI elements in the QuizFragment layout
-        updateProgress()
-
-        // Example: Update TextViews in the QuizFragment layout
-        totalQuestionsAnsweredTextView.text = buildString {
-                append("Total Questions Answered: ")
-                append(quizProgress.totalQuestionsAnswered.toString())
-            }
-        totalCorrectTextView.text = buildString {
-            append("Total Correct: ")
-            append(quizProgress.totalCorrect.toString())
-        }
-        totalWrongTextView.text = buildString {
-            append("Total Wrong: ")
-            append(quizProgress.totalWrong.toString())
-        }
-        easyQuestionsAnsweredTextView.text = buildString {
-                append("Easy Questions Answered: ")
-                append(quizProgress.easyQuestionsAnswered.toString())
-            }
-        mediumQuestionsAnsweredTextView.text = buildString {
-                append("Medium Questions Answered: ")
-                append(quizProgress.mediumQuestionsAnswered.toString())
-            }
-        hardQuestionsAnsweredTextView.text = buildString {
-                append("Hard Questions Answered: ")
-                append(quizProgress.hardQuestionsAnswered.toString())
-            }
-
-    }
-
-    fun updateProgress() {
-        // Update your UI or perform any necessary updates based on quizProgress
-
-        // Example: Update a progress bar
-        val totalQuestions = 10 // Change this to the total number of questions
-        val progressPercentage =
-            (quizProgress.totalQuestionsAnswered.toDouble() / totalQuestions) * 100
-
-        // You can update other UI elements or perform additional actions as needed
-    }
-
 
     private fun clearOptionBackgrounds() {
         for (i in 0 until optionsRadioGroup.childCount) {
@@ -379,7 +287,6 @@ class QuizFragment : Fragment() {
             currentQuestionIndex++
             questionsAnswered++
             displayQuestion()
-            startTimer()
         } else {
             // End of the quiz
             val score = calculateScore()

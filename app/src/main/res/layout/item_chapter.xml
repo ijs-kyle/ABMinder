@@ -12,6 +12,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="12dp"
             android:layout_margin="4dp"
+            app:cardElevation="@dimen/card_elevation"
             >
 
         <LinearLayout
@@ -20,6 +21,7 @@
                 android:orientation="horizontal"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="4dp"
+                android:baselineAligned="false"
                 >
 
             <LinearLayout
@@ -37,6 +39,7 @@
                         android:paddingVertical="10dp"
                         android:layout_gravity="center_vertical"
                         android:id="@+id/imageView2"
+                        android:contentDescription="@string/learn"
                         />
             </LinearLayout>
 
@@ -51,10 +54,10 @@
                         android:id="@+id/chapterTextView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
                         android:text="@string/medium"
                         android:textStyle="bold"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="10dp"
                         />
             </LinearLayout>
 

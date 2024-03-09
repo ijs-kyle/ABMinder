@@ -77,7 +77,7 @@
     <string name="medium">MEDIUM</string>
     <string name="hard">HARD</string>
     <string name="quiz">Quiz</string>
-    <string name="quizDescription">Choose your preferred difficulty level:\n   - Easy: Suitable for beginners or those looking for a foundational understanding.\n   - Medium: A moderate challenge for individuals with a basic understanding of business mathematics.\n   - Hard: Designed for advanced users seeking to test their expertise in complex business math scenarios.</string>
+    <string name="quizDescription">Choose your preferred difficulty level:\n\n   - Easy: Suitable for beginners or those looking for a foundational understanding.\n   - Medium: A moderate challenge for individuals with a basic understanding of business mathematics.\n   - Hard: Designed for advanced users seeking to test their expertise in complex business math scenarios.</string>
     <string name="instructions">Instructions:</string>
     <string name="option_1">Option 1</string>
     <string name="option_2">Option 2</string>
@@ -105,4 +105,16 @@
     <string name="recent_searches">Recent searches…</string>
     <string name="score">score</string>
     <string name="search_topics_here">Search topics here...</string>
+    <string name="books">Books</string>
+    <string name="time_taken">Time Taken</string>
+    <string name="replay">Replay</string>
+    <string name="test_your_knowledge">Test Your Knowledge</string>
+    <string name="engage_your_mind_with_our_interactive_quiz_app">Engage your mind!</string>
+    <string name="choose_your_preferred_difficulty_level_easy_medium_or_hard_and_dive_into_a_collection_of_thought_provoking_questions">Choose your preferred difficulty level – easy, medium, or hard – and dive into a collection of thought-provoking questions.</string>
+    <string name="term">Term</string>
+    <string name="definition">Definition</string>
+    <string name="example_optional">Example (optional)</string>
+    <string name="recent_searches_will_appear_here">Recent searches will appear here</string>
+    <string name="fab">FAB</string>
+    <string name="edit_term">Add/Edit term</string>
 </resources>

@@ -10,7 +10,7 @@
             android:fullBackupContent="@xml/backup_rules"
             android:icon="@drawable/ic_logo"
             android:label="@string/app_name"
-            android:roundIcon="@drawable/ic_logo"
+            android:roundIcon="@drawable/ic_logo_modified"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:targetApi="tiramisu">

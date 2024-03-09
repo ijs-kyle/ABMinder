@@ -1,43 +1,78 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/difficulty"
-        android:padding="24dp"
+        android:background="@color/colorPrimary"
         >
 
-    <com.google.android.material.divider.MaterialDivider
+    <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="12dp"
+            >
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/quiz"
+                android:fontFamily="@font/roboto_black"
+                android:textColor="@color/colorPrimary"
+                android:layout_margin="6dp"
+                android:gravity="center"
+                android:textSize="32sp"
+                />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/engage_your_mind_with_our_interactive_quiz_app"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"
+            android:textSize="18sp"
             />
 
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/choose_your_preferred_difficulty_level_easy_medium_or_hard_and_dive_into_a_collection_of_thought_provoking_questions"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="16dp"
+            />
+
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:textStyle="bold"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/white"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
             android:text="@string/choose_difficulty_level"
             />
 
-    <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginBottom="24dp"
-            />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="-16dp"
+            android:layout_margin="4dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="28dp"
             >
 
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:padding="16dp"
                 >
@@ -51,23 +86,26 @@
 
                 <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_quiz" />
+                        android:layout_height="171dp"
+                        android:src="@drawable/ic_quiz"
+                        android:contentDescription="@string/quiz"
+                        />
 
             </LinearLayout>
 
             <com.google.android.material.divider.MaterialDivider
                     android:layout_width="1dp"
-                    style="?attr/dividerVertical"
                     android:layout_marginHorizontal="8dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="170dp"
+                    app:dividerColor="@android:color/darker_gray"
                     />
 
             <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:layout_marginStart="4dp"
+                    android:gravity="top"
                     android:orientation="vertical"
                     >
 
@@ -108,24 +146,6 @@
                         />
             </LinearLayout>
 
-
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/instructions"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:layout_marginBottom="8dp"
-            android:textStyle="bold"
-            />
-
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/quizDescription"
-            android:textSize="16sp"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            />
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

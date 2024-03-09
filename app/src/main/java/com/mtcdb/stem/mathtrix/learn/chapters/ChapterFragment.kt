@@ -49,7 +49,10 @@ class ChaptersFragment : Fragment() {
     private fun onChapterSelected(chapter: String) {
         val fragmentManager = requireActivity().supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, LessonsFragment.newInstance(chapter))
+        transaction.replace(
+            R.id.fragment_container,
+            LessonsFragment.newInstance(chapter, selectedSubject)
+        )
         transaction.addToBackStack(null)
         transaction.commit()
         mainActivity.toolbar.title = chapter
@@ -84,10 +87,6 @@ class ChaptersFragment : Fragment() {
                 "The Accounting Equation",
             )
 
-            "Fundamentals of ABM II" -> listOf(
-                "Introduction to Financial Accounting",
-            )
-
             "Applied Economics" -> listOf(
                 "Introduction to Economics",
                 "Application of Demand",
@@ -101,7 +100,7 @@ class ChaptersFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mainActivity.toolbar.title = selectedSubject
+        mainActivity.toolbar.title = getString(R.string.learn)
     }
 
 }

@@ -8,9 +8,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.appbar.MaterialToolbar
+import androidx.appcompat.widget.Toolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mtcdb.stem.mathtrix.MainActivity
 import com.mtcdb.stem.mathtrix.R
@@ -21,19 +20,10 @@ class DifficultyLevel : AppCompatActivity() {
     private lateinit var easyButton: Button
     private lateinit var mediumButton: Button
     private lateinit var hardButton: Button
-    private lateinit var toolbar: MaterialToolbar
+    private lateinit var toolbar: Toolbar
     private lateinit var intentM: Intent
     private lateinit var progressTrackerLayout: LinearLayout
-    private lateinit var totalQuestionsAnsweredTextView: TextView
-    private lateinit var totalCorrectTextView: TextView
-    private lateinit var totalWrongTextView: TextView
-    private lateinit var easyQuestionsAnsweredTextView: TextView
-    private lateinit var mediumQuestionsAnsweredTextView: TextView
-    private lateinit var hardQuestionsAnsweredTextView: TextView
-    private lateinit var averageScoreTextView: TextView
-    private var averageScore: Double = 0.0
     private val scoresList: MutableList<Double> = mutableListOf()
-
     private lateinit var quizFragment: QuizFragment
 
     @SuppressLint("MissingInflatedId", "RestrictedApi")
@@ -47,16 +37,6 @@ class DifficultyLevel : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.title = getString(R.string.quiz)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        // Initialize progress tracker views
-        progressTrackerLayout = findViewById(R.id.progressTrackerLayout)
-        totalQuestionsAnsweredTextView = findViewById(R.id.totalQuestionsAnsweredTextView)
-        totalCorrectTextView = findViewById(R.id.totalCorrectTextView)
-        totalWrongTextView = findViewById(R.id.totalWrongTextView)
-        easyQuestionsAnsweredTextView = findViewById(R.id.easyQuestionsAnsweredTextView)
-        mediumQuestionsAnsweredTextView = findViewById(R.id.mediumQuestionsAnsweredTextView)
-        hardQuestionsAnsweredTextView = findViewById(R.id.hardQuestionsAnsweredTextView)
-        averageScoreTextView = findViewById(R.id.averageScoreTextView)
 
         easyButton = difficulty.findViewById(R.id.easyButton)
         mediumButton = difficulty.findViewById(R.id.mediumButton)
@@ -97,60 +77,6 @@ class DifficultyLevel : AppCompatActivity() {
     private fun hideProgressTracker() {
         // Hide progress tracker views
         progressTrackerLayout.visibility = View.GONE
-    }
-
-    public fun updateProgressTracker(
-        isCorrect: Boolean,
-        difficultyLevel: String,
-        quizProgress: QuizProgress
-    ) {
-        quizProgress.totalQuestionsAnswered++
-        if (isCorrect) {
-            quizProgress.totalCorrect++
-        } else {
-            quizProgress.totalWrong++
-        }
-
-        when (difficultyLevel) {
-            "Easy" -> quizProgress.easyQuestionsAnswered++
-            "Medium" -> quizProgress.mediumQuestionsAnswered++
-            "Hard" -> quizProgress.hardQuestionsAnswered++
-        }
-
-        // Update TextViews in DifficultyLevel activity
-        totalQuestionsAnsweredTextView.text =
-            "Total Questions Answered: ${quizProgress.totalQuestionsAnswered}"
-        totalCorrectTextView.text = "Total Correct: ${quizProgress.totalCorrect}"
-        totalWrongTextView.text = "Total Wrong: ${quizProgress.totalWrong}"
-        easyQuestionsAnsweredTextView.text =
-            "Easy Questions Answered: ${quizProgress.easyQuestionsAnswered}"
-        mediumQuestionsAnsweredTextView.text =
-            "Medium Questions Answered: ${quizProgress.mediumQuestionsAnswered}"
-        hardQuestionsAnsweredTextView.text =
-            "Hard Questions Answered: ${quizProgress.hardQuestionsAnswered}"
-
-        // Calculate and update average score
-        calculateAverageScore(quizProgress.totalCorrect, quizProgress.totalQuestionsAnswered)
-
-    }
-
-    private fun isContextValid(): Boolean {
-        return this@DifficultyLevel.applicationContext != null
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun calculateAverageScore(totalCorrect: Int, totalQuestionsAnswered: Int) {
-        if (totalQuestionsAnswered > 0) {
-            // Calculate the average score
-            averageScore = (totalCorrect.toDouble() / totalQuestionsAnswered) * 100
-
-            // Update UI with average score
-            averageScoreTextView.text =
-                String.format("Average Score: %.2f%%", averageScore)
-        } else {
-            // Handle the case where there are no questions answered
-            averageScoreTextView.text = "No questions answered yet"
-        }
     }
 
     private fun navigateToQuizFragment(difficultyLevel: String) {
