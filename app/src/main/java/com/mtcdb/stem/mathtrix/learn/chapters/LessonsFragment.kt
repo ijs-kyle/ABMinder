@@ -1,5 +1,6 @@
 package com.mtcdb.stem.mathtrix.learn.chapters
 
+import android.os.Build.VERSION_CODES.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mtcdb.stem.mathtrix.MainActivity
-import com.mtcdb.stem.mathtrix.R
 
 class LessonsFragment : Fragment() {
 
@@ -38,7 +38,7 @@ class LessonsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view = inflater.inflate(R.layout.fragment_lesson, container, false)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewLessons)
@@ -239,7 +239,10 @@ class LessonsFragment : Fragment() {
                 Lesson("Perfect Competition", "perfect_competition.html"),
                 Lesson("Monopolistic Competition", "monopolistic_competition.html"),
                 Lesson("Oligopoly", "oligopoly.html"),
-                Lesson("", ""),
+                Lesson(
+                    "Population Growth on the Philippine Economy and Labor Market",
+                    "population_growth.html"
+                ),
             )
 
             else -> emptyList()

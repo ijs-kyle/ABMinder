@@ -1,4 +1,6 @@
-import android.content.Context
+package com.mtcdb.stem.mathtrix.dictionary
+
+import android.annotation.SuppressLint
 import android.database.Cursor
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mtcdb.stem.mathtrix.R
 
 class TermAdapter(
-    cursor1: Context,
     private var cursor: Cursor?,
     private val itemClickListener: OnItemClickListener
 ) :
@@ -58,6 +59,7 @@ class TermAdapter(
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun swapCursor(newCursor: Cursor?) {
         cursor?.close()
         cursor = newCursor

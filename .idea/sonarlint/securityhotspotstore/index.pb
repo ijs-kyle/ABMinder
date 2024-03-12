@@ -555,3 +555,15 @@ w
 G.idea/sonarlint/issuestore/d/5/d53bbf5254b2516122d835cc15c03939f6433a67,f\c\fc93dac69cdb70476a731d949123854d47ec0ff8
 w
 G.idea/sonarlint/issuestore/e/6/e6d65f4c92201dfba8ffdc3f63e8156f5b3310b0,1\d\1d5ffc0e38bb6b2fb6d75f95acf4487d67714c32
+s
+Capp/src/main/java/com/mtcdb/stem/mathtrix/learn/chapters/Chapter.kt,1\6\1661dee2d12ae1787cc12d72dc5d224a09868930
+s
+Capp/src/main/java/com/mtcdb/stem/mathtrix/learn/chapters/Subject.kt,b\0\b0b46fdc48f83635705aa6fc5e8d53ec947366ec
+x
+Happ/src/main/java/com/mtcdb/stem/mathtrix/dictionary/EditTermFragment.kt,6\c\6c778b77abdb014baba1ccdbe3670f2170af98ae
+z
+Japp/src/main/java/com/mtcdb/stem/mathtrix/dictionary/DIctionaryFragment.kt,5\c\5c855dcd8fd20cf73e4f389af467700ccbfba090
+w
+Gapp/src/main/java/com/mtcdb/stem/mathtrix/dictionary/TermListAdapter.kt,7\3\73fc04bc78540d2482e36b09abaa7bb2677aa862
+l
+<app/src/main/java/com/mtcdb/stem/mathtrix/dictionary/TErm.kt,a\c\ac8aca46cb19cdd67e51af8155f451ab8a0bc3a3

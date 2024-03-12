@@ -1,6 +1,5 @@
 package com.mtcdb.stem.mathtrix.dictionary
 
-import TermAdapter
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
@@ -74,7 +73,7 @@ class EditTermFragment : Fragment(), TermAdapter.OnItemClickListener {
         val db: SQLiteDatabase = dbHelper.readableDatabase
         val cursor: Cursor = db.rawQuery("SELECT * FROM dictionary_terms", null)
 
-        termListAdapter = TermAdapter(requireContext(), cursor, this)
+        termListAdapter = TermAdapter(cursor, this)
         termsRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = termListAdapter
