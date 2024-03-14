@@ -69,7 +69,7 @@
     <string name="calculating_simple_interest">Calculating simple interest:</string>
     <string name="example">Example:</string>
     <string name="assets_path">file:///android_asset/%s</string>
-    <string name="description">MathTrix, the go-to app for Business Mathematics tailored for ABM students. MathTrix combines a powerful Business Mathematics Calculator, an extensive Business Mathematics Dictionary,  lessons and tips, engaging quizzes, and progress tracking—all in one comprehensive application.</string>
+    <string name="description">Welcome to ABMinder, the ultimate mobile application designed specifically for ABM (Accountancy, Business, and Management) students. Developed by a team of dedicated scholars from Mother Theresa Colegio De Balatan, ABMinder aims to revolutionize the way students engage with core subjects such as Business Mathematics, Business Finance, FABM 1, and Applied Economics.</string>
     <string name="get_started">Get started</string>
     <string name="welcome_to_mathtrix">MathTrix</string>
     <string name="choose_difficulty_level">Choose difficulty level</string>

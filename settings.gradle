@@ -14,6 +14,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MathTrix"
+rootProject.name = "ABMinder"
 include ':app'
 include ':calculatorOptions'
