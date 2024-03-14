@@ -90,7 +90,7 @@ class ChaptersFragment : Fragment() {
             "Applied Economics" -> listOf(
                 "Introduction to Economics",
                 "Application of Demand",
-                "Industry and Environment Analysis, Business Opportunity and Identification",
+                "Industry and Environment Analysis",
                 "Socioeconomic Impact Study",
             )
 

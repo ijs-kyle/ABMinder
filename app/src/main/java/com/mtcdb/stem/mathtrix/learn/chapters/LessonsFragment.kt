@@ -40,7 +40,6 @@ class LessonsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.fragment_lesson, container, false)
-
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewLessons)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter =
@@ -243,6 +242,38 @@ class LessonsFragment : Fragment() {
                     "Population Growth on the Philippine Economy and Labor Market",
                     "population_growth.html"
                 ),
+                Lesson(
+                    "Labor Market", "labor_market.html"
+                ),
+                Lesson("Wage Situation in the Philippines", "wage_situation.html"),
+                Lesson(
+                    "Labor Migration and Overseas Filipino Workers (OFWs)",
+                    "labor_migration.html"
+                ),
+                Lesson("Philippine Economic Problems", "philippine_economic_problem.html"),
+                Lesson("Philippine Peso Exchange Rates", "philippine_peso.html"),
+                Lesson("Saving vs. Investing", "saving_investing.html"),
+                Lesson("Rent", "rent.html"),
+                Lesson("Minimum Wage", "minimum_wage.html"),
+            )
+
+            "Industry and Environment Analysis" -> listOf(
+                Lesson("Small, Medium, and Large scale Businesses", "scale_businesses.html"),
+                Lesson("Tools in Evaluating a Business", "tools_business.html"),
+                Lesson("SWOT Analysis", "swot_analysis.html"),
+                Lesson("Porter's Five Forces", "porter_five_forces.html"),
+                Lesson("Industry Analysis", "industry_analysis.html"),
+                Lesson("Environmental Analysis", "environmental_analysis.html"),
+            )
+
+            "Socioeconomic Impact Study" -> listOf(
+                Lesson("Consumer Theory", "consumer_theory.html"),
+                Lesson("Utility Function", "utility_function.html"),
+                Lesson("The Production Theory", "production_theory.html"),
+                Lesson("Socioeconomic Impact of a Business", "socioeconomic_impact.html"),
+                Lesson("Government Impact on Business", "government_impact.html"),
+                Lesson("Trade and Capital Movement", "trade_capital_movement.html"),
+                Lesson("Herfindahl-Hirschman Index (HHI)", "hh_index.html"),
             )
 
             else -> emptyList()
