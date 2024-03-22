@@ -1,21 +1,18 @@
 package com.mtcdb.stem.mathtrix.learn.chapters
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.mtcdb.stem.mathtrix.MainActivity
-import com.mtcdb.stem.mathtrix.R
+import android.os.*
+import android.view.*
+import androidx.fragment.app.*
+import androidx.recyclerview.widget.*
+import com.mtcdb.stem.mathtrix.*
+import com.mtcdb.stem.mathtrix.learn.lessons.*
 
 class ChaptersFragment : Fragment() {
 
     companion object {
         private const val ARG_SUBJECT = "arg_subject"
 
-        fun newInstance(subject: String): ChaptersFragment {
+        fun newInstance(subject : String) : ChaptersFragment {
             val fragment = ChaptersFragment()
             val args = Bundle()
             args.putString(ARG_SUBJECT, subject)
@@ -24,17 +21,17 @@ class ChaptersFragment : Fragment() {
         }
     }
 
-    private lateinit var mainActivity: MainActivity
-    private lateinit var selectedSubject: String
+    private lateinit var mainActivity : MainActivity
+    private lateinit var selectedSubject : String
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater : LayoutInflater, container : ViewGroup?,
+        savedInstanceState : Bundle?,
+    ) : View? {
         val view = inflater.inflate(R.layout.fragment_chapters, container, false)
 
         // Initialize RecyclerView
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewChapters)
+        val recyclerView : RecyclerView = view.findViewById(R.id.recyclerViewChapters)
         recyclerView.layoutManager = LinearLayoutManager(activity)
 
         selectedSubject = arguments?.getString(ARG_SUBJECT) ?: ""
@@ -46,7 +43,7 @@ class ChaptersFragment : Fragment() {
         return view
     }
 
-    private fun onChapterSelected(chapter: String) {
+    private fun onChapterSelected(chapter : String) {
         val fragmentManager = requireActivity().supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(
@@ -58,7 +55,7 @@ class ChaptersFragment : Fragment() {
         mainActivity.toolbar.title = chapter
     }
 
-    private fun getChaptersForSubject(subject: String): List<String> {
+    private fun getChaptersForSubject(subject : String) : List<String> {
         return when (subject) {
             "Business Mathematics" -> listOf(
                 "Introduction to Business Mathematics",

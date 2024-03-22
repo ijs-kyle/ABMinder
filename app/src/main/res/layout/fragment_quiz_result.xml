@@ -13,7 +13,7 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start"
+            android:gravity="center"
             android:textStyle="bold"
             android:fontFamily="@font/roboto_black"
             android:textSize="28sp"
@@ -53,10 +53,10 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.10"
+                        app:layout_constraintHorizontal_bias="0.059"
                         app:textSize="32sp"
+                        app:layout_constraintVertical_bias="0.0"
                         />
-
 
                 <TextView
                         android:id="@+id/timeTakenTextView"
@@ -73,6 +73,7 @@
                         app:layout_constraintVertical_bias="0.6"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/progressBar2"
+                        app:layout_constraintHorizontal_bias="0.56"
                         />
 
                 <ImageView
@@ -112,8 +113,26 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/progressBar2"
                         android:fontFamily="@font/roboto_regular"
+                        android:textSize="16sp"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintVertical_bias="0.0"
-                        android:textSize="24sp"
+                        />
+
+                <TextView
+                        android:id="@+id/subject"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name"
+                        android:gravity="start"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/timeTakenTextView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/progressBar2"
+                        android:fontFamily="@font/roboto_regular"
+                        app:layout_constraintVertical_bias="0.0"
+                        android:textSize="16sp"
+                        app:layout_constraintHorizontal_bias="0.049"
                         />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -146,7 +165,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/replay"
                         android:layout_marginTop="16dp"
-                        style="?android:attr/buttonBarButtonStyle"
+                        style="?attr/buttonBarButtonStyle"
                         android:paddingHorizontal="16dp"
                         android:layout_gravity="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"

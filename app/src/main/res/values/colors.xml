@@ -3,25 +3,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="bg">#4169E1</color>
     <color name="colorPrimary">#309296</color>
     <color name="colorSecondary">#26784B</color>
     <color name="colorPrimaryDark">#2D8185</color>
-    <color name="bgWindow">#E7E6E6</color>
-    <color name="colorAccent">#F4FBFB</color>
+    <color name="colorAccent">#F3FDFD</color>
 
     <color name="correctOptionColor">#00C853</color>
     <color name="incorrectOptionColor">#FF1744</color>
-
-    <color name="ratingBarCorrectColor">#00FF00</color>
-    <color name="ratingBarIncorrectColor">#FF0000</color>
 
     <color name="lightGreen">#ADFA9C</color>
     <color name="green">#28D801</color>
     <color name="lightRed">#FF9999</color>
     <color name="Red">#D60404</color>
-
-    <color name="item">#FFFFFF</color>
 
 
 </resources>

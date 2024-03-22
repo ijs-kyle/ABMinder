@@ -1,30 +1,28 @@
 package com.mtcdb.stem.mathtrix.quiz
 
-import android.annotation.SuppressLint
-import android.content.Intent
-import android.graphics.Color
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import antonkozyriatskyi.circularprogressindicator.CircularProgressIndicator
+import android.annotation.*
+import android.content.*
+import android.graphics.*
+import android.os.*
+import android.view.*
+import android.widget.*
+import androidx.core.content.*
+import androidx.fragment.app.*
+import antonkozyriatskyi.circularprogressindicator.*
 import com.mtcdb.stem.mathtrix.R
 
 @Suppress("DEPRECATION")
 class QuizResultFragment : Fragment() {
 
-    private lateinit var finishButton: Button
-    private lateinit var difficulty: String
+    private lateinit var finishButton : Button
+    private lateinit var difficulty : String
+    private lateinit var replay : Button
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater : LayoutInflater, container : ViewGroup?,
+        savedInstanceState : Bundle?,
+    ) : View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_quiz_result, container, false)
 
@@ -34,8 +32,8 @@ class QuizResultFragment : Fragment() {
         val score = arguments?.getInt("quizScore") ?: 0
         difficulty = arguments?.getString("difficulty").toString()
 
-        val progressBar: CircularProgressIndicator = view.findViewById(R.id.progressBar2)
-        val difficultyTextView: TextView = view.findViewById(R.id.difficulty)
+        val progressBar : CircularProgressIndicator = view.findViewById(R.id.progressBar2)
+        val difficultyTextView : TextView = view.findViewById(R.id.difficulty)
 
         difficultyTextView.text = difficulty
         questions?.size?.let { progressBar.setProgress(score.toDouble(), it.toDouble()) }
@@ -52,7 +50,8 @@ class QuizResultFragment : Fragment() {
 
         if (score >= thresholdScore) {
             progressBar.progressColor = aboveThresholdColor
-            progressBar.progressBackgroundColor = ContextCompat.getColor(requireActivity(), R.color.lightGreen)
+            progressBar.progressBackgroundColor =
+                ContextCompat.getColor(requireActivity(), R.color.lightGreen)
             progressBar.textColor = aboveThresholdColor
         } else {
             progressBar.progressColor = belowThresholdColor
@@ -61,10 +60,27 @@ class QuizResultFragment : Fragment() {
                 ContextCompat.getColor(requireActivity(), R.color.lightRed)
         }
 
-        val timeTakenTextView: TextView = view.findViewById(R.id.timeTakenTextView)
+        val timeTakenTextView : TextView = view.findViewById(R.id.timeTakenTextView)
 
+        val difficulty = arguments?.getString("difficulty")
+        val subject = arguments?.getString("subject")
         val timeTaken = arguments?.getString("timeTaken")
         timeTakenTextView.text = timeTaken
+
+        replay = view.findViewById(R.id.replay)
+        replay.setOnClickListener {
+
+            val quizFragment = QuizFragment()
+            val bundle = Bundle()
+            bundle.putString("difficultyLevel", difficulty)
+            bundle.putString("subject", subject)
+            quizFragment.arguments = bundle
+
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.quiz_container, quizFragment).commit()
+
+            requireActivity().supportFragmentManager.beginTransaction().remove(this).commit()
+        }
 
         finishButton = view.findViewById(R.id.finishButton)
         finishButton.setOnClickListener {
@@ -80,9 +96,11 @@ class QuizResultFragment : Fragment() {
         }
 
         // Display the result message in a TextView
-        val resultTextView: TextView = view.findViewById(R.id.resultTextView)
+        val resultTextView : TextView = view.findViewById(R.id.resultTextView)
         resultTextView.text = resultMessage
 
+        val subjectTV : TextView = view.findViewById(R.id.subject)
+        subjectTV.text = subject
         return view
     }
 }

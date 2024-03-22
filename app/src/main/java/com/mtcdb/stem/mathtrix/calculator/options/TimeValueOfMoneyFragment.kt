@@ -23,14 +23,23 @@ class TimeValueOfMoneyFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(com.calculator.calculatoroptions.R.layout.fragment_time_value_of_money, container, false)
+        val view = inflater.inflate(
+            com.calculator.calculatoroptions.R.layout.fragment_time_value_of_money,
+            container,
+            false
+        )
 
         // Initialize UI components
-        presentValueEditText = view.findViewById(com.calculator.calculatoroptions.R.id.editTextPresentValue)
-        compoundingPeriodEditText = view.findViewById(com.calculator.calculatoroptions.R.id.editTextCompoundingPeriod)
-        interestRateEditText = view.findViewById(com.calculator.calculatoroptions.R.id.editTextInterestRate)
-        timePeriodEditText = view.findViewById(com.calculator.calculatoroptions.R.id.editTextTimePeriod)
-        calculateButton = view.findViewById(com.calculator.calculatoroptions.R.id.buttonCalculateTVM)
+        presentValueEditText =
+            view.findViewById(com.calculator.calculatoroptions.R.id.editTextPresentValue)
+        compoundingPeriodEditText =
+            view.findViewById(com.calculator.calculatoroptions.R.id.editTextCompoundingPeriod)
+        interestRateEditText =
+            view.findViewById(com.calculator.calculatoroptions.R.id.editTextInterestRate)
+        timePeriodEditText =
+            view.findViewById(com.calculator.calculatoroptions.R.id.editTextTimePeriod)
+        calculateButton =
+            view.findViewById(com.calculator.calculatoroptions.R.id.buttonCalculateTVM)
         resultTextView = view.findViewById(com.calculator.calculatoroptions.R.id.textViewTVMResult)
 
         calculateButton.setOnClickListener {
@@ -49,7 +58,8 @@ class TimeValueOfMoneyFragment : Fragment() {
         val percentInterest = interestRate / 100
 
         // Calculate time value of money
-        val result = presentValue * (1 + percentInterest / compoundingPeriod).pow(compoundingPeriod * timePeriod)
+        val result =
+            presentValue * (1 + percentInterest / compoundingPeriod).pow(compoundingPeriod * timePeriod)
 
         // Display result
         resultTextView.text = String.format(getString(R.string.tvm_result_format), result)
@@ -63,7 +73,7 @@ class TimeValueOfMoneyFragment : Fragment() {
         timePeriod: Double,
         result: Double
     ) {
-        val percentInterest = interestRate / 100
+        interestRate / 100
 
         val explanation = """
             Time Value of Money (TVM) calculates the present or future value of money based on an interest rate and time period.

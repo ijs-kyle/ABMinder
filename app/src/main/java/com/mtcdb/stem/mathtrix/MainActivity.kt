@@ -1,70 +1,62 @@
 package com.mtcdb.stem.mathtrix
 
-import android.annotation.SuppressLint
-import android.content.ContentValues
-import android.content.Intent
-import android.graphics.PorterDuff
-import android.os.Build
-import android.os.Bundle
-import android.os.Handler
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Toast
-import android.window.OnBackInvokedDispatcher
-import androidx.activity.addCallback
-import androidx.annotation.RequiresApi
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.*
+import android.content.*
+import android.graphics.*
+import android.os.*
+import android.view.*
+import android.widget.*
+import android.window.*
+import androidx.activity.*
+import androidx.appcompat.app.*
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.navigation.NavigationView
-import com.mtcdb.stem.mathtrix.calculator.CalculatorOptionsFragment
-import com.mtcdb.stem.mathtrix.dictionary.DictionaryDatabaseHelper
-import com.mtcdb.stem.mathtrix.dictionary.DictionaryFragment
-import com.mtcdb.stem.mathtrix.dictionary.EditTermFragment
-import com.mtcdb.stem.mathtrix.learn.chapters.SubjectsFragment
-import com.mtcdb.stem.mathtrix.quiz.DifficultyLevel
-import com.mtcdb.stem.mathtrix.settings.SettingsActivity
+import androidx.core.content.*
+import androidx.core.view.*
+import androidx.drawerlayout.widget.*
+import androidx.fragment.app.*
+import com.google.android.material.floatingactionbutton.*
+import com.google.android.material.navigation.*
+import com.mtcdb.stem.mathtrix.calculator.*
+import com.mtcdb.stem.mathtrix.dictionary.*
+import com.mtcdb.stem.mathtrix.learn.subjects.*
+import com.mtcdb.stem.mathtrix.quiz.*
+import com.mtcdb.stem.mathtrix.quiz.database.*
+import com.mtcdb.stem.mathtrix.settings.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var toolbar: Toolbar
-    private lateinit var drawerLayout: DrawerLayout
-    private lateinit var toggle: ActionBarDrawerToggle
-    private lateinit var layoutCalculator: LinearLayout
+    lateinit var toolbar : Toolbar
+    private lateinit var drawerLayout : DrawerLayout
+    private lateinit var toggle : ActionBarDrawerToggle
+    private lateinit var layoutCalculator : LinearLayout
     private var doubleBackToExitPressedOnce = false
-
+    private lateinit var dbHelper : QuizDatabaseHelper
 
     @SuppressLint("InflateParams")
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, DictionaryFragment())
-            .commit()
+        dbHelper = QuizDatabaseHelper(this)
+        val quizDataPopulator = QuizDataPopulator(dbHelper)
+        quizDataPopulator.populateQuizData()
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
+        drawerLayout = findViewById(R.id.drawer_layout)
+
         fab.setOnClickListener {
             showAddTermDialog()
         }
 
-        toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // Initialize toolbar and other UI components
+        initViews()
+
+        // Set initial fragment
+        setCurrentFragment(DictionaryFragment())
 
         val calcView = layoutInflater.inflate(R.layout.fragment_calculator_options, null)
         layoutCalculator = calcView.findViewById(R.id.calculator_layout)
 
-        drawerLayout = findViewById(R.id.drawer_layout)
         toggle = ActionBarDrawerToggle(
             this,
             drawerLayout,
@@ -81,32 +73,17 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_item_calculator -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, CalculatorOptionsFragment())
-                        .addToBackStack(null)
-                        .commit()
-                    drawerLayout.closeDrawer(GravityCompat.START)
+                    setCurrentFragment(CalculatorOptionsFragment())
                     toolbar.title = getString(R.string.app_name)
                 }
 
                 R.id.nav_item_dictionary -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, DictionaryFragment())
-                        .commit()
-                    drawerLayout.closeDrawer(GravityCompat.START)
+                    setCurrentFragment(DictionaryFragment())
                     toolbar.title = getString(R.string.dictionary)
                 }
 
                 R.id.nav_item_learn -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(
-                            R.id.fragment_container,
-                            SubjectsFragment(),
-                            SubjectsFragment::class.java.simpleName
-                        )
-                        .addToBackStack(null)
-                        .commit()
-                    drawerLayout.closeDrawer(GravityCompat.START)
+                    setCurrentFragment(SubjectsFragment())
                     toolbar.title = "Learn"
                 }
 
@@ -130,11 +107,37 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this, DifficultyLevel::class.java)
                     startActivity(intent)
                     drawerLayout.closeDrawer(GravityCompat.START)
+                    toolbar.title = getString(R.string.quiz)
+                    navView.setCheckedItem(R.id.nav_item_dictionary)
                 }
             }
             return@setNavigationItemSelectedListener true
         }
         navView.setCheckedItem(R.id.nav_item_dictionary)
+    }
+
+    private fun initViews() {
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    private fun setCurrentFragment(fragment : Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
+        drawerLayout.closeDrawer(GravityCompat.START)
+        // Update FAB visibility based on the current fragment
+        setFabVisibility(fragment)
+    }
+
+
+    private fun setFabVisibility(fragment : Fragment) {
+        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        fab.visibility = when (fragment) {
+            is DictionaryFragment -> View.VISIBLE
+            else -> View.GONE
+        }
     }
 
     private fun showAddTermDialog() {
@@ -163,7 +166,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun addTermToDatabase(term: String, definition: String?, example: String?) {
+    private fun addTermToDatabase(term : String, definition : String?, example : String?) {
         if (term.isBlank()) {
             // Inform the user that the term is required
             Toast.makeText(this@MainActivity, "Term is required.", Toast.LENGTH_SHORT).show()
@@ -195,7 +198,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun clearInputFields(dialogView: View) {
+    private fun clearInputFields(dialogView : View) {
         // Clear input fields after adding the term
         dialogView.findViewById<EditText>(R.id.termEditText).text = null
         dialogView.findViewById<EditText>(R.id.definitionEditText).text = null
@@ -203,53 +206,61 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    override fun getOnBackInvokedDispatcher(): OnBackInvokedDispatcher {
+    override fun getOnBackInvokedDispatcher() : OnBackInvokedDispatcher {
         // Get the default dispatcher from the superclass
         val dispatcher = super.getOnBackInvokedDispatcher()
 
-        // Add a callback to handle onBackPressed event
+        // Add a callback to handle the onBackPressed event
         onBackPressedDispatcher.addCallback(this) {
-            drawerLayout = findViewById(R.id.drawer_layout)
-            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                // Close the navigation drawer if it's open
-                drawerLayout.closeDrawer(GravityCompat.START)
-            } else if (supportFragmentManager.backStackEntryCount > 0) {
-                // If there are fragments in the back stack, pop the fragment
-                toolbar.title = getString(R.string.app_name)
-                supportFragmentManager.popBackStack()
-            } else {
-                // If there are no fragments in the back stack, handle the back button press behavior
-                toolbar.title = getString(R.string.app_name)
-                if (doubleBackToExitPressedOnce) {
-                    // If the user presses back button twice within 2 seconds, exit the app
-                    finish()
-                } else {
-                    doubleBackToExitPressedOnce = true
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Press back again to exit",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    // Reset the flag after 2 seconds
-                    Handler(mainLooper).postDelayed({
-                        doubleBackToExitPressedOnce = false
-                    }, 2000)
-                }
-            }
+            handleBackPressed()
         }
 
         return dispatcher
     }
 
+    private fun handleBackPressed() {
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        handleDoubleBackToExit()
 
-    @RequiresApi(Build.VERSION_CODES.Q)
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Check if the navigation drawer is open
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            // Close the navigation drawer
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else if (supportFragmentManager.backStackEntryCount > 0) {
+            // If there are fragments in the back stack, pop the fragment
+            toolbar.title = getString(R.string.app_name)
+            supportFragmentManager.popBackStack()
+        } else {
+            // If there are no fragments in the back stack, handle the back button press behavior
+            toolbar.title = getString(R.string.app_name)
+            handleDoubleBackToExit()
+        }
+    }
+
+    private fun handleDoubleBackToExit() {
+        if (doubleBackToExitPressedOnce) {
+            // If the user presses the back button twice within 2 seconds, finish the hosting activity
+            finish()
+        } else {
+            //doubleBackToExitPressedOnce = true
+            Toast.makeText(this@MainActivity, "Press back again to exit", Toast.LENGTH_SHORT).show()
+            doubleBackToExitPressedOnce = true
+
+            // Reset the flag after 2 seconds
+            Handler(Looper.getMainLooper()).postDelayed({
+                doubleBackToExitPressedOnce = false
+            }, 2000)
+        }
+    }
+
+
+    override fun onCreateOptionsMenu(menu : Menu?) : Boolean {
         menuInflater.inflate(R.menu.menu_app_bar, menu)
         return true
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+    @Suppress("DEPRECATION")
+    override fun onPrepareOptionsMenu(menu : Menu) : Boolean {
 
         toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.menu)
         val navigationIcon = toolbar.navigationIcon
@@ -257,7 +268,7 @@ class MainActivity : AppCompatActivity() {
         return super.onPrepareOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    override fun onOptionsItemSelected(item : MenuItem) : Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
                 if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -265,6 +276,12 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     drawerLayout.openDrawer(GravityCompat.START)
                 }
+                true
+            }
+
+            R.id.action_progress -> {
+                setCurrentFragment(QuizProgressFragment())
+                toolbar.title = "Progress"
                 true
             }
 

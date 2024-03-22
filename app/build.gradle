@@ -6,9 +6,9 @@ plugins {
 }
 
 android {
-    
+
     namespace 'com.mtcdb.stem.mathtrix'
-    compileSdk 34 
+    compileSdk 34
 
     repositories {
         google()
@@ -17,7 +17,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.mtcdb.stem.mathtrix"
+        applicationId 'com.mtcdb.stem.abminder'
         minSdk 26
         targetSdk 34
         versionCode 1
@@ -40,6 +40,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
 }
 
 dependencies {
@@ -67,8 +68,11 @@ dependencies {
     implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
 
     implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.5'
 
-    implementation project(path:":calculatorOptions")
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    implementation project(path: ":calculatorOptions")
     implementation fileTree(dir: 'libs', include: ['*.zip'])
 
 }

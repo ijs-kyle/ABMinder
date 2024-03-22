@@ -6,6 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
+        android:background="#E1F4F6"
         >
 
 
@@ -13,14 +14,14 @@
             android:id="@+id/welcomeImage"
             android:layout_width="match_parent"
             android:layout_height="280dp"
-            android:src="@drawable/new_icon_modified"
+            android:src="@drawable/ic_logo_modified"
             android:contentDescription="@string/mathtrix"
             android:layout_centerInParent="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.36"
+            app:layout_constraintVertical_bias="0.26"
             />
 
     <TextView
@@ -32,6 +33,7 @@
             android:fontFamily="@font/roboto_black"
             android:layout_below="@id/welcomeImage"
             android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/startButton"
             app:layout_constraintTop_toBottomOf="@+id/welcomeImage"
             app:layout_constraintVertical_bias="0.058"
@@ -50,6 +52,7 @@
             android:gravity="center"
             android:textSize="16sp"
             android:padding="12dp"
+            android:textColor="@color/black"
             android:background="@drawable/delected_option"
             android:text="@string/description"
             tools:layout_editor_absoluteX="16dp"
